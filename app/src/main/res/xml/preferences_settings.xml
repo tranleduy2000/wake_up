@@ -31,13 +31,13 @@
             android:summary="@string/pref_pocket_mode_summary"
             android:title="@string/pref_pocket_mode" />
     </PreferenceCategory>
-    <PreferenceCategory
+    <!--<PreferenceCategory
         android:dependency="pref_enable"
-        android:key="@string/prefs_general"
+        android:key="prefs_general"
         android:title="@string/pref_lock_screen">
         <CheckBoxPreference
             android:defaultValue="false"
-            android:key="@string/pref_lock_screen"
+            android:key="pref_lock_screen"
             android:summary="@string/pref_lock_screen_mode_summary"
             android:title="@string/pref_lock_screen" />
         <CheckBoxPreference
@@ -66,5 +66,5 @@
             android:key="pref_lock_screen_with_power_button_as_root"
             android:summary="@string/pref_lock_screen_with_power_button_as_root_summary"
             android:title="@string/pref_lock_screen_with_power_button_as_root" />
-    </PreferenceCategory>
+    </PreferenceCategory>-->
 </PreferenceScreen>

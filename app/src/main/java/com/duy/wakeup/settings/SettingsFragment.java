@@ -100,7 +100,7 @@ public class SettingsFragment extends PreferenceFragmentCompatDividers implement
         onSharedPreferenceChanged(getSettings().getPreferences(),
                 WakeUpSettings.KEY_SENSOR_COVER_TIME_BEFORE_LOCKING_SCREEN); // Work-around to set the summary of the option every time the Main Activity is shown
 
-        getPreferenceScreen().findPreference(getString(R.string.prefs_general)).setVisible(false);
+        findPreference("prefs_general").setVisible(false);
     }
 
     @Override
