@@ -23,6 +23,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
+import com.duy.common.utils.DLog;
 import com.duy.wakeup.manager.WakeUpSettings;
 
 public class NewMultipleWaveOptionAdapter extends BroadcastReceiver {

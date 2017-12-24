@@ -24,6 +24,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 
+import com.duy.common.utils.DLog;
 import com.duy.wakeup.manager.WakeUpSettings;
 import com.duy.wakeup.services.WaveUpService;
 

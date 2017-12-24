@@ -43,6 +43,7 @@
                 <data android:scheme="package" />
             </intent-filter>
         </receiver>
+
         <receiver
             android:name="com.duy.wakeup.receivers.NewMultipleWaveOptionAdapter"
             android:enabled="true"
@@ -52,6 +53,7 @@
                 <data android:scheme="package" />
             </intent-filter>
         </receiver>
+
         <receiver
             android:name="com.duy.wakeup.receivers.LockScreenAdminReceiver"
             android:permission="android.permission.BIND_DEVICE_ADMIN">

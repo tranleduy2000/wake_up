@@ -24,6 +24,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.widget.Toast;
 
+import com.duy.common.utils.DLog;
 import com.duy.wakeup.R;
 import com.duy.wakeup.manager.WakeUpSettings;
 

@@ -23,7 +23,6 @@ import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.preference.CheckBoxPreference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
@@ -47,7 +46,6 @@ public class WakeUpSettings {
 
     private static volatile WakeUpSettings INSTANCE;
     private final Context mContext;
-    private PreferenceActivity mPreferenceActivity = null;
 
     private WakeUpSettings(@NonNull Context context) {
         this.mContext = context.getApplicationContext();
@@ -118,12 +116,12 @@ public class WakeUpSettings {
     }
 
     private void setPreference(String key, boolean value) {
-        if (mPreferenceActivity != null) { // This changes the GUI, but it needs the MainActivity to have started
+        /*if (mPreferenceActivity != null) { // This changes the GUI, but it needs the MainActivity to have started
             CheckBoxPreference checkBox = (CheckBoxPreference) mPreferenceActivity.findPreference(key);
             checkBox.setChecked(value);
-        } else { // This doesn't change the GUI
-            getPreferences().edit().putBoolean(key, value).apply();
-        }
+        } else { // This doesn't change the GUI*/
+        getPreferences().edit().putBoolean(key, value).apply();
+//        }
         /* onSharedPreferenceChanged is not called sometimes when status of a preference is changed manually.
          * Call startOrStop here to check if proximity sensor listener should be registered or not. */
         ProximitySensorManager.getInstance(mContext).startOrStopListeningDependingOnConditions();
@@ -177,6 +175,6 @@ public class WakeUpSettings {
          * we need to have the preferenceActivity, which is the MainActivity so we set it the moment
          * it is launched so that we can use it afterwards.
          */
-        this.mPreferenceActivity = preferenceActivity;
+//        this.mPreferenceActivity = preferenceActivity;
     }
 }

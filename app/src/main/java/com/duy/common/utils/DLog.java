@@ -88,6 +88,19 @@ public class DLog {
     }
 
     /**
+     * warning log
+     */
+    public static void w(String TAG, Object msg, Throwable e) {
+        if (DEBUG) {
+            if (ANDROID) {
+                Log.w(TAG, msg.toString(), e);
+            } else {
+                System.out.println(TAG + ": " + msg.toString());
+            }
+        }
+    }
+
+    /**
      * Error log
      */
     public static void e(Exception exception) {
@@ -168,6 +181,7 @@ public class DLog {
             }
         }
     }
+
     /**
      * info log
      *
@@ -182,6 +196,7 @@ public class DLog {
             }
         }
     }
+
     @Deprecated
     public static void reportException(Throwable e) {
        /* FirebaseCrash.report(e);*/
