@@ -1,7 +1,6 @@
 WaveUp is an app that <i>wakes up your phone</i> - switches the screen on - when you <i>wave</i> over the proximity sensor.
 
-I have developed this app because I wanted to avoid pressing the power button just to take a look at the watch - which I happen to do a lot on my phone. There are already other apps that do exactly this - and even more. I was inspired by Gravity Screen On/Off, which is a <b>great</b> app. However, I am a huge fan of open source software and try to install free software (free as in freedom, not only free as in free beer) on my phone if possible. I wasn't able to find an open source app that did this so I just did it myself. If you're interested, you can take a look at the code:
-https://gitlab.com/juanitobananas/wave-up
+I have developed this app because I wanted to avoid pressing the power button just to take a look at the watch - which I happen to do a lot on my phone. There are already other apps that do exactly this - and even more. I was inspired by Gravity Screen On/Off, which is a <b>great</b> app.
 
 Just wave your hand over the proximity sensor of your phone to turn the screen on. This is called <i>wave mode</i> and can be disabled in the settings screen in order to avoid accidental switching on of your screen.
 
