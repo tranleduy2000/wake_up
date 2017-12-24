@@ -38,7 +38,6 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.text.method.LinkMovementMethod;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -47,6 +46,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.duy.common.utils.DLog;
 import com.duy.wakeup.BuildConfig;
 import com.duy.wakeup.manager.ProximitySensorManager;
 import com.duy.wakeup.manager.WakeUpSettings;
@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatPreferenceActivity implements SharedP
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        Log.d(TAG, "Starting WaveUp MainActivity (GUI)");
+        DLog.d(TAG, "Starting WaveUp MainActivity (GUI)");
         showInitialDialog();
         adaptToNewMultipleWaveOption();
         getSettings().setPreferenceActivity(this);
@@ -222,14 +222,14 @@ public class MainActivity extends AppCompatPreferenceActivity implements SharedP
 
     private void startService() {
         if (getSettings().isServiceEnabled()) {
-            Log.i(TAG, "Starting WaveUpService");
+            DLog.i(TAG, "Starting WaveUpService");
             startService(new Intent(this, WaveUpService.class));
             if (getSettings().isShowStartedServiceToast()) {
                 Toast.makeText(this, com.duy.wakeup.R.string.wave_up_service_started, Toast.LENGTH_SHORT).show();
                 getSettings().setShowStartedServiceToast(false);
             }
         } else {
-            Log.i(TAG, "Stopping WaveUpService");
+            DLog.i(TAG, "Stopping WaveUpService");
             stopService(new Intent(this, WaveUpService.class));
             if (!getSettings().isShowStartedServiceToast()) {
                 Toast.makeText(this, com.duy.wakeup.R.string.wave_up_service_stopped, Toast.LENGTH_SHORT).show();
@@ -275,7 +275,7 @@ public class MainActivity extends AppCompatPreferenceActivity implements SharedP
     }
 
     private void removeDeviceAdminPermission() {
-        Log.i(TAG, "Removing lock screen admin rights");
+        DLog.i(TAG, "Removing lock screen admin rights");
         ComponentName devAdminReceiver = new ComponentName(getApplicationContext(), LockScreenAdminReceiver.class);
         DevicePolicyManager dpm = (DevicePolicyManager) getApplicationContext().getSystemService(Context.DEVICE_POLICY_SERVICE);
         dpm.removeActiveAdmin(devAdminReceiver);
@@ -290,7 +290,7 @@ public class MainActivity extends AppCompatPreferenceActivity implements SharedP
             removeAdminRights = true;
         }
 
-        Log.i(TAG, "Uninstalling app");
+        DLog.i(TAG, "Uninstalling app");
         Uri packageURI = Uri.parse("package:" + "com.duy.wakeup");
         Intent uninstallIntent = new Intent(Intent.ACTION_DELETE, packageURI);
         startActivityForResult(uninstallIntent, UNINSTALL_REQUEST_CODE);

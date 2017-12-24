@@ -23,7 +23,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.util.Log;
 
 import com.duy.wakeup.manager.WakeUpSettings;
 import com.duy.wakeup.services.WaveUpService;
@@ -36,15 +35,15 @@ public class BootCompleteReceiver extends BroadcastReceiver {
         if (intent != null && intent.getAction() != null) {
             if (WakeUpSettings.getInstance(context).isServiceEnabled()) {
                 if (intent.getAction().equals(Intent.ACTION_BOOT_COMPLETED)) {
-                    Log.d(TAG, "Received ACTION_BOOT_COMPLETED.");
+                    DLog.d(TAG, "Received ACTION_BOOT_COMPLETED.");
                     startWaveUpService(context);
                 } else if (intent.getAction().equals(Intent.ACTION_PACKAGE_REPLACED)) {
-                    Log.d(TAG, "Received ACTION_PACKAGE_REPLACED.");
+                    DLog.d(TAG, "Received ACTION_PACKAGE_REPLACED.");
                     Uri data = intent.getData();
                     if (data != null) {
                         String upgradedPackage = data.getSchemeSpecificPart().replace("package:", "");
                         if (context.getPackageName().equals(upgradedPackage)) {
-                            Log.d(TAG, "The upgraded app was WaveUp.");
+                            DLog.d(TAG, "The upgraded app was WaveUp.");
                             startWaveUpService(context);
                         }
                     }
@@ -54,7 +53,7 @@ public class BootCompleteReceiver extends BroadcastReceiver {
     }
 
     private void startWaveUpService(Context context) {
-        Log.i(TAG, "Starting WaveUp");
+        DLog.i(TAG, "Starting WaveUp");
         context.startService(new Intent(context, WaveUpService.class));
     }
 }

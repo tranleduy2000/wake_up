@@ -23,7 +23,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.util.Log;
 
 import com.duy.wakeup.manager.ProximitySensorManager;
 
@@ -36,9 +35,9 @@ public class OrientationReceiver extends BroadcastReceiver {
         // Leaving this here only for logging purposes
         if (orientation == Configuration.ORIENTATION_PORTRAIT ||
                 orientation == Configuration.ORIENTATION_UNDEFINED) {
-            Log.d(TAG, "Changed orientation: portrait (or undefined).");
+            DLog.d(TAG, "Changed orientation: portrait (or undefined).");
         } else if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            Log.d(TAG, "Changed orientation: landscape.");
+            DLog.d(TAG, "Changed orientation: landscape.");
         }
 
         ProximitySensorManager.getInstance(context).startOrStopListeningDependingOnConditions();

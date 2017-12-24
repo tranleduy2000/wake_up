@@ -24,7 +24,9 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.util.Log;
+
+import com.duy.common.utils.DLog;
+import com.duy.wakeup.BuildConfig;
 
 import java.util.Locale;
 
@@ -69,11 +71,11 @@ public class ProximitySensorManager implements SensorEventListener {
 
     private void start() {
         if (!mIsListening) {
-            Log.d(TAG, "Registering proximity sensor listener.");
+            DLog.d(TAG, "Registering proximity sensor listener.");
             mSensorManager.registerListener(this, mProximitySensor, SensorManager.SENSOR_DELAY_NORMAL);
             mIsListening = true;
         } else {
-            Log.d(TAG, "Proximity sensor listener is already registered. There is no need to register it again.");
+            DLog.d(TAG, "Proximity sensor listener is already registered. There is no need to register it again.");
         }
     }
 
@@ -86,7 +88,7 @@ public class ProximitySensorManager implements SensorEventListener {
                 || !waveUpWorldState.isScreenOn();
         boolean startAllowedByNoOngoingCall = !waveUpWorldState.isOngoingCall();
 
-        Log.v(TAG, String.format(
+        DLog.v(TAG, String.format(
                 "start because of wave or lock modes: %s\n" +
                         "start because of orientation: %s\n" +
                         "start because of no ongoing call: %s",
@@ -97,10 +99,10 @@ public class ProximitySensorManager implements SensorEventListener {
         boolean start = startAllowedByWaveOrLockModes && startAllowedByOrientation && startAllowedByNoOngoingCall;
 
         if (start) {
-            Log.d(TAG, "Starting because an event happened and the world in combination with the settings say I should start listening");
+            DLog.d(TAG, "Starting because an event happened and the world in combination with the settings say I should start listening");
             start();
         } else {
-            Log.d(TAG, "Stopping because an event happened and the world in combination with the settings say I should stop listening");
+            DLog.d(TAG, "Stopping because an event happened and the world in combination with the settings say I should stop listening");
             stop();
         }
     }
@@ -108,11 +110,11 @@ public class ProximitySensorManager implements SensorEventListener {
     public final void stop() {
         WakeUpScreenHandler.getInstance(mContext).cancelTurnOff();
         if (mIsListening) {
-            Log.d(TAG, "Unregistering proximity sensor listener");
+            DLog.d(TAG, "Unregistering proximity sensor listener");
             mSensorManager.unregisterListener(this);
             mIsListening = false;
         } else {
-            Log.d(TAG, "Proximity sensor listener is already unregistered. There is no need to unregister it again.");
+            DLog.d(TAG, "Proximity sensor listener is already unregistered. There is no need to unregister it again.");
         }
     }
 
@@ -120,7 +122,7 @@ public class ProximitySensorManager implements SensorEventListener {
     public final void onSensorChanged(SensorEvent event) {
         long currentTime = System.currentTimeMillis();
         Distance currentDistance = event.values[0] >= event.sensor.getMaximumRange() ? Distance.FAR : Distance.NEAR;
-        Log.v(TAG, String.format(Locale.ENGLISH, "Proximity sensor changed: %s (current sensor value: %f - max. sensor value: %f)", currentDistance, event.values[0], event.sensor.getMaximumRange()));
+        DLog.v(TAG, String.format(Locale.ENGLISH, "Proximity sensor changed: %s (current sensor value: %f - max. sensor value: %f)", currentDistance, event.values[0], event.sensor.getMaximumRange()));
 
         // If the sensor gets uncovered, there is possibly a thread waiting to turn off the screen. It needs to be interrupted.
         if (currentDistance == Distance.FAR) {
@@ -132,9 +134,9 @@ public class ProximitySensorManager implements SensorEventListener {
 
         long timeBetweenFarAndNear = currentTime - mLastTime;
         if (uncovered) {
-            Log.v(TAG, "Just uncovered. Time it was covered: " + timeBetweenFarAndNear);
+            DLog.v(TAG, "Just uncovered. Time it was covered: " + timeBetweenFarAndNear);
         } else {
-            Log.v(TAG, "Just covered. Time it was uncovered: " + timeBetweenFarAndNear);
+            DLog.v(TAG, "Just covered. Time it was uncovered: " + timeBetweenFarAndNear);
         }
 
 
@@ -150,8 +152,9 @@ public class ProximitySensorManager implements SensorEventListener {
                     }
 
                     mWaveCount++;
-                    Log.v(TAG, "Waved. waveCount: " + mWaveCount + "");
-                    Log.v(TAG, "Time between waves was: " + (currentTime - mLastWaveTime) + " (will only switch on screen if waves happen within 2 seconds)");
+                    if (BuildConfig.DEBUG) mScreenHandler.vibrate();
+                    DLog.v(TAG, "Waved. waveCount: " + mWaveCount + "");
+                    DLog.v(TAG, "Time between waves was: " + (currentTime - mLastWaveTime) + " (will only switch on screen if waves happen within 2 seconds)");
                     mLastWaveTime = System.currentTimeMillis();
                     long minWaves = mSettings.getNumberOfWavesToWaveUp() - 1;
                     if (mWaveCount > minWaves) {
@@ -162,7 +165,7 @@ public class ProximitySensorManager implements SensorEventListener {
                     mScreenHandler.turnOnScreen();
                 }
             } else {
-                Log.d(TAG, "Time since last screen off: " + timeSinceLastScreenOnOrOff + ". Not switching it on");
+                DLog.d(TAG, "Time since last screen off: " + timeSinceLastScreenOnOrOff + ". Not switching it on");
             }
         } else if (covered) {
             mScreenHandler.turnOffScreen();

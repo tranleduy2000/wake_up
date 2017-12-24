@@ -19,8 +19,6 @@
 
 package com.duy.wakeup.root;
 
-import android.util.Log;
-
 import java.io.DataOutputStream;
 import java.io.IOException;
 
@@ -36,7 +34,7 @@ public class Root {
     }
 
     private static boolean executeAsRoot(String command) {
-        Log.d(TAG, "Trying to execute '" + command + "' as root");
+        DLog.d(TAG, "Trying to execute '" + command + "' as root");
         boolean accessGranted = false;
         try {
             Process suProcess = Runtime.getRuntime().exec("su");
@@ -48,16 +46,16 @@ public class Root {
 
             int suProcessReturnValue = suProcess.waitFor();
             if (suProcessReturnValue == 0) {
-                Log.d(TAG, "Root access granted (return value " + suProcessReturnValue + ")");
+                DLog.d(TAG, "Root access granted (return value " + suProcessReturnValue + ")");
                 accessGranted = true;
             } else {
-                Log.d(TAG, "Root access denied (return value " + suProcessReturnValue + ")");
+                DLog.d(TAG, "Root access denied (return value " + suProcessReturnValue + ")");
             }
 
         } catch (IOException | SecurityException e) {
-            Log.w(TAG, "Couldn't get root access while executing '" + command + "'", e);
+            DLog.w(TAG, "Couldn't get root access while executing '" + command + "'", e);
         } catch (InterruptedException e) {
-            Log.w(TAG, "Error trying to get root access", e);
+            DLog.w(TAG, "Error trying to get root access", e);
         }
         return accessGranted;
     }

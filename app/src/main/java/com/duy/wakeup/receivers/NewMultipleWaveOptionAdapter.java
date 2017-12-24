@@ -22,7 +22,6 @@ package com.duy.wakeup.receivers;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 
 import com.duy.wakeup.manager.WakeUpSettings;
 
@@ -30,13 +29,13 @@ public class NewMultipleWaveOptionAdapter extends BroadcastReceiver {
     private static final String TAG = "NewMultipleWaveOption";
 
     private void setDefaultValueForDoubleWave(Context context, WakeUpSettings settings) {
-        Log.d(TAG, "Probably just replaced a pre-number-of-waves version of WaveUp. Adapting to new option accordingly: " +
+        DLog.d(TAG, "Probably just replaced a pre-number-of-waves version of WaveUp. Adapting to new option accordingly: " +
                 "Setting NUMBER_OF_WAVES to 1 if 'wave mode' was on and to 2 if it wasn't...");
         if (WakeUpSettings.getInstance(context).isWaveMode()) {
-            Log.d(TAG, "'Wave mode' is on. Setting NUMBER_OF_WAVES to 1 so that it works as before");
+            DLog.d(TAG, "'Wave mode' is on. Setting NUMBER_OF_WAVES to 1 so that it works as before");
             WakeUpSettings.getInstance(context).setNumberOfWaves(1);
         } else {
-            Log.d(TAG, "'Wave mode' is off. Setting NUMBER_OF_WAVES to 2, the new standard to avoid accidental waving up");
+            DLog.d(TAG, "'Wave mode' is off. Setting NUMBER_OF_WAVES to 2, the new standard to avoid accidental waving up");
             WakeUpSettings.getInstance(context).setNumberOfWaves(2);
         }
     }

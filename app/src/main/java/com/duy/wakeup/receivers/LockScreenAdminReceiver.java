@@ -22,7 +22,6 @@ package com.duy.wakeup.receivers;
 import android.app.admin.DeviceAdminReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.duy.wakeup.R;
@@ -35,7 +34,7 @@ public class LockScreenAdminReceiver extends DeviceAdminReceiver {
     public void onDisabled(Context context, Intent intent) {
         super.onDisabled(context, intent);
 
-        Log.d(TAG, "Disabled lock device admin");
+        DLog.d(TAG, "Disabled lock device admin");
 
         Toast.makeText(context, R.string.removed_device_admin_rights, Toast.LENGTH_SHORT).show();
         WakeUpSettings.getInstance(context).setLockScreen(false);

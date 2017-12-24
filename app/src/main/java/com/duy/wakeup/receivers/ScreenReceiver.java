@@ -22,7 +22,6 @@ package com.duy.wakeup.receivers;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 
 import com.duy.wakeup.manager.ProximitySensorManager;
 
@@ -33,9 +32,9 @@ public class ScreenReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         if (intent != null && intent.getAction() != null) {
             if (intent.getAction().equals(Intent.ACTION_SCREEN_OFF)) { // I am leaving this if just for the logging
-                Log.d(TAG, "Screen off");
+                DLog.d(TAG, "Screen off");
             } else if (intent.getAction().equals(Intent.ACTION_SCREEN_ON)) {
-                Log.d(TAG, "Screen on");
+                DLog.d(TAG, "Screen on");
             }
             ProximitySensorManager.getInstance(context).startOrStopListeningDependingOnConditions();
         }

@@ -23,8 +23,8 @@ import android.app.admin.DevicePolicyManager;
 import android.content.Context;
 import android.os.PowerManager;
 import android.os.Vibrator;
-import android.util.Log;
 
+import com.duy.common.utils.DLog;
 import com.duy.wakeup.root.Root;
 
 public class WakeUpScreenHandler {
@@ -71,12 +71,12 @@ public class WakeUpScreenHandler {
             @Override
             public void run() {
                 if (mWaveUpWorldState.isScreenOn()) {
-                    Log.d(TAG, "Creating a thread to turn off display if still covered in " + delay / 1000 + " seconds");
+                    DLog.d(TAG, "Creating a thread to turn off display if still covered in " + delay / 1000 + " seconds");
                     try {
                         Thread.sleep(delay);
                         doTurnOffScreen();
                     } catch (InterruptedException e) {
-                        Log.d(TAG, "Interrupted thread: Turning off screen cancelled.");
+                        DLog.d(TAG, "Interrupted thread: Turning off screen cancelled.");
                     }
                 }
             }
@@ -89,18 +89,18 @@ public class WakeUpScreenHandler {
         if (mSettings.isVibrateWhileLocking()) {
             vibrate();
         }
-        Log.i(TAG, "Switched from 'far' to 'near'.");
+        DLog.i(TAG, "Switched from 'far' to 'near'.");
         if (mSettings.isLockScreenWithPowerButton()) {
-            Log.i(TAG, "Turning screen off simulating power button press.");
+            DLog.i(TAG, "Turning screen off simulating power button press.");
             Root.pressPowerButton();
         } else {
-            Log.i(TAG, "Turning screen off.");
+            DLog.i(TAG, "Turning screen off.");
             try {
                 mPolicyManager.lockNow();
             } catch (IllegalStateException e) {
-                Log.e(TAG, "Failed to run lockNow() to turn off the screen. Probably due to an ongoing call. Exception: " + e);
+                DLog.e(TAG, "Failed to run lockNow() to turn off the screen. Probably due to an ongoing call. Exception: " + e);
             } catch (SecurityException e) {
-                Log.e(TAG, "Failed to run lockNow() to turn off the screen. Probably due to missing device admin rights, which I don't really understand... Exception: " + e);
+                DLog.e(TAG, "Failed to run lockNow() to turn off the screen. Probably due to missing device admin rights, which I don't really understand... Exception: " + e);
             }
         }
         mIsTurningOffScreen = false;
@@ -118,7 +118,7 @@ public class WakeUpScreenHandler {
 
     public void cancelTurnOff() {
         if (mTurnOffScreenThread != null && !mIsTurningOffScreen) {
-            Log.d(TAG, "Cancelling turning off of display");
+            DLog.d(TAG, "Cancelling turning off of display");
             mTurnOffScreenThread.interrupt();
             mTurnOffScreenThread = null;
         }
@@ -131,7 +131,7 @@ public class WakeUpScreenHandler {
     public void turnOnScreen() {
         if (!mWaveUpWorldState.isScreenOn()) {
             mLastTimeScreenOnOrOff = System.currentTimeMillis();
-            Log.i(TAG, "Switched from 'near' to 'far'. Turning screen on");
+            DLog.i(TAG, "Switched from 'near' to 'far'. Turning screen on");
             if (mWakeLock.isHeld()) {
                 mWakeLock.release();
             }
@@ -139,7 +139,7 @@ public class WakeUpScreenHandler {
         }
     }
 
-    private void vibrate() {
+    public void vibrate() {
         Vibrator vibrator = (Vibrator) this.mContext.getSystemService(Context.VIBRATOR_SERVICE);
         vibrator.vibrate(50);
     }

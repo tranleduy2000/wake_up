@@ -24,7 +24,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.telephony.TelephonyManager;
-import android.util.Log;
 
 import com.duy.wakeup.manager.ProximitySensorManager;
 
@@ -41,23 +40,23 @@ public class CallStateReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         if (intent != null && intent.getAction() != null) {
             if (!intent.getAction().equals(TelephonyManager.ACTION_PHONE_STATE_CHANGED)) {
-                Log.w(TAG, "Avoid intent spoofing (intent '" + intent.getAction() + "')");
+                DLog.w(TAG, "Avoid intent spoofing (intent '" + intent.getAction() + "')");
                 return;
             }
             Bundle extras = intent.getExtras();
             if (extras != null) {
                 String state = extras.getString(TelephonyManager.EXTRA_STATE);
                 if (state != null) {
-                    Log.v(TAG, "Call state: " + state);
+                    DLog.v(TAG, "Call state: " + state);
                     if (!state.equals(lastState)) { // States seem to show twice (once with number and once without number) I can ignore consecutive states that are equal.
                         lastState = state;
                         if (state.equals(TelephonyManager.EXTRA_STATE_IDLE)) {
                             ongoingCall = false;
-                            Log.d(TAG, "Finished call.");
+                            DLog.d(TAG, "Finished call.");
                         } else if (state.equals(TelephonyManager.EXTRA_STATE_OFFHOOK) ||
                                 state.equals(TelephonyManager.EXTRA_STATE_RINGING)) {
                             ongoingCall = true;
-                            Log.d(TAG, "Ongoing call.");
+                            DLog.d(TAG, "Ongoing call.");
                         }
                     }
                     ProximitySensorManager.getInstance(context).startOrStopListeningDependingOnConditions();
