@@ -46,7 +46,6 @@
     <string name="lock_admin_rights_explanation">Para que WaveUp pueda bloquear el móvil, necesita que le des permisos de administración (solamente el de bloqueo de pantalla).</string>
     <string name="root_access_failed">Acceso root denegado</string>
 
-    <string name="uninstall_button">Desinstalar WaveUp</string>
     <string name="removed_device_admin_rights">WaveUp ha perdido los derechos administrativos. Activa la opción \"Bloquear la pantalla\" para volver a activarlos.</string>
 
     <!-- Initial alert dialog -->

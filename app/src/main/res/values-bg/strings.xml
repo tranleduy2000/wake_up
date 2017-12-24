@@ -48,7 +48,6 @@
 
     <string name="revoke_device_admin_permission_menu_item">Изключете администраторските права</string>
 
-    <string name="uninstall_button">Премахване на WaveUp</string>
     <string name="removed_device_admin_rights">Администраторските права са отменени. Включете опцията \" Заключване на екрана\", за да ги разрешите отново.</string>
 
     <!-- Initial alert dialog -->

@@ -48,7 +48,6 @@
 
     <string name="revoke_device_admin_permission_menu_item">Root toegang intrekken</string>
 
-    <string name="uninstall_button">Verwijder WaveUp</string>
     <string name="removed_device_admin_rights">Administrator rechten verwijderd. Activeer de \'Schermvergrendeling\' optie om deze weer opnieuw toe te passen.</string>
 
     <!-- Initial alert dialog -->

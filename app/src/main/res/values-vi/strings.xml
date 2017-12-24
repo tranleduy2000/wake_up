@@ -8,7 +8,6 @@
     <string name="pref_sensor_cover_time_before_locking_screen">Số lần che cảm biến trước khi khóa</string>
     <string name="wave_up_service_started">Dịch vụ WaveUp đang chạy</string>
     <string name="wave_up_service_stopped">Dịch vụ WaveUp đã dừng</string>
-    <string name="uninstall_button">Gỡ cài đặt WakeUp</string>
     <string name="alert_dialog_title">Xin chào bạn đến với WakeUp</string>
     <string name="alert_dialog_ok_button">Đồng ý</string>
     <string name="privacy_policy_menu_item">Chính sách bảo mật</string>

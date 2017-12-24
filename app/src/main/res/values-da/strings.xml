@@ -46,7 +46,6 @@
     <string name="lock_admin_rights_explanation">For at låse skærmen, når du dækker nærhedsføleren, skal du aktivere administrator rettigheder for WaveUp.</string>
     <string name="root_access_failed">Kunne ikke få rod adgang</string>
 
-    <string name="uninstall_button">Afinstallere WaveUp</string>
     <string name="removed_device_admin_rights">Fjernede administrator rettigheder. Aktivere \'Lås skærm\' tilstand, hvis du ønsker at give dem igen</string>
 
     <!-- Initial alert dialog -->

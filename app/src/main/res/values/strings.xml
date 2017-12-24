@@ -48,7 +48,6 @@
 
     <string name="revoke_device_admin_permission_menu_item">Revoke Device Admin Permission</string>
 
-    <string name="uninstall_button">Uninstall WaveUp</string>
     <string name="removed_device_admin_rights">Removed admin rights. Just activate the \'Lock screen\' option if you wish to grant these again</string>
 
     <!-- Initial alert dialog -->

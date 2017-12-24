@@ -46,7 +46,6 @@
     <string name="lock_admin_rights_explanation">Hurbiltasun sentsorea estaltzerakoan pantaila blokeatu ahal izateko, WaveUperako administratzale baimenak gaitu beharko dituzu.</string>
     <string name="root_access_failed">Ezin izan da root sarrera lortu</string>
 
-    <string name="uninstall_button">WaveUp desinstalatu</string>
     <string name="removed_device_admin_rights">Administratzaile baimenak kendu dira. \'Pantaila blokeatu\' aukera aktibatu ezazu hauek berriro eskuratzeko</string>
 
     <!-- Initial alert dialog -->

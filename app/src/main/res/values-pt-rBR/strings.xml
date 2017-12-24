@@ -46,7 +46,6 @@
     <string name="lock_admin_rights_explanation">Para bloquear a tela quando o sensor de proximidade estiver coberto, você precisa dar permissões de administrador para WaveUp.</string>
     <string name="root_access_failed">Não foi possível acessar à rota</string>
 
-    <string name="uninstall_button">Desinstalar WaveUp</string>
     <string name="removed_device_admin_rights">As permissões de administrador foram removidas. Ligue novamente a opção \'Bloqueio de tela\' se as quiser ativar novamente</string>
 
     <!-- Initial alert dialog -->

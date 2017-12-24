@@ -46,7 +46,6 @@
     <string name="lock_admin_rights_explanation">Agar penguncian layar dapat dilakukan saat sensor jarak / proximity tertutup, maka Anda akan diminta untuk memberikan hak istimewa perangkat untuk aplikasi WaveUp</string>
     <string name="root_access_failed">Tidak mampu mendapatkan akses dasar / root</string>
 
-    <string name="uninstall_button">Hapus aplikasi WaveUp</string>
     <string name="removed_device_admin_rights">Cabut hak admin. Cukup hidupkan pilihan \'Pengunci layar\' apabila Anda hendak mengizinkan penggunaan fitur ini kembali</string>
 
     <!-- Initial alert dialog -->

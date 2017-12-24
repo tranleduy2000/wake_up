@@ -46,7 +46,6 @@
     <string name="lock_admin_rights_explanation">Для того, чтобы заблокировать экран, когда вы закрываете датчик приближения, вам необходимо включить права администратора для WaveUp.</string>
     <string name="root_access_failed">Невозможно получить рут - права!</string>
 
-    <string name="uninstall_button">Удалить WaveUp</string>
     <string name="removed_device_admin_rights">Удалены рут - права. Включите опцию \"Блокировка экрана\", если хотите предоставить их снова</string>
 
     <!-- Initial alert dialog -->

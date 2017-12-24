@@ -46,7 +46,6 @@
     <string name="lock_admin_rights_explanation">WaveUp benötigt Sonderadminrechte, um das Gerät sperren zu können.</string>
     <string name="root_access_failed">Root-Zugriff wurde nicht erlaubt</string>
 
-    <string name="uninstall_button">WaveUp deinstallieren</string>
     <string name="removed_device_admin_rights">WaveUp ist kein Gerätadministrator mehr. Drücken Sie die "Gerät sperren" Option, um es wieder einzurichten</string>
 
     <!-- Initial alert dialog -->

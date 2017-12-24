@@ -46,7 +46,6 @@
     <string name="lock_admin_rights_explanation">Pentru a bloca ecranul atunci cand acoperi senzorul de proximitate, trebuie sa acorzi privilegii de administrator pentru WaveUp.</string>
     <string name="root_access_failed">Nu s-a putut obtine accesul root</string>
 
-    <string name="uninstall_button">Dezinstaleaza WaveUp</string>
     <string name="removed_device_admin_rights">Permisiuni de administrator retrase. Activati optiunea \'Blocare ecran\' daca doriti sa le acordati din nou</string>
 
     <!-- Initial alert dialog -->

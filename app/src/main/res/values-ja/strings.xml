@@ -49,7 +49,6 @@
 
     <string name="revoke_device_admin_permission_menu_item">管理者権限の削除</string>
 
-    <string name="uninstall_button">WaveUpのアンインストール</string>
     <string name="removed_device_admin_rights">管理者権限を削除しました。管理者権限を再度付与するには”画面ロック”オプションを有効にしてください</string>
 
     <!-- Initial alert dialog -->

@@ -42,7 +42,6 @@
     <string name="lock_admin_rights_explanation">Annak érdekében, hogy a képernyőt le tudd zárni a mozgásérzékelő eltakarásával, adminisztrátor jogosultságot kell engedélyezned a WaveUp részére.</string>
     <string name="root_access_failed">"Nem sikerült root hozzáférést szerezni"</string>
 
-    <string name="uninstall_button">A WaveUp eltávolítása</string>
     <string name="removed_device_admin_rights">"Rendszergazdai jogok eltávolítva. Csak aktiváld a 'Képernyő lezárás' opciót, ha újra engedélyeztetni szeretnéd"</string>
 
     <!-- Initial alert dialog -->

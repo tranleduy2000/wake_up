@@ -48,7 +48,6 @@
 
     <string name="revoke_device_admin_permission_menu_item">取消激活设备管理员</string>
 
-    <string name="uninstall_button">卸载挥手亮屏</string>
     <string name="removed_device_admin_rights">已取消激活设备管理员。如果你希望重新激活，请打开“锁屏”选项</string>
 
     <!-- Initial alert dialog -->
