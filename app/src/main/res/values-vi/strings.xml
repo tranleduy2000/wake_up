@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">WaveUp</string>
+    <string name="prefs_service">Dịch vụ</string>
+    <string name="pref_enable">Bật</string>
+    <string name="pref_lock_screen">Khóa màn hình</string>
+    <string name="pref_lock_screen_vibrate_on_lock">Rung trước khi khóa</string>
+    <string name="pref_sensor_cover_time_before_locking_screen">Số lần che trước khi khóa</string>
+    <string name="wave_up_service_started">Dịch vụ WakeUp đang chạy</string>
+    <string name="wave_up_service_stopped">Dịch vụ WakeUp đã đừng</string>
+    <string name="uninstall_button">Gỡ cài đặt WakeUp</string>
+    <string name="alert_dialog_title">Xin chào bạn đến với WakeUp</string>
+    <string name="alert_dialog_ok_button">Đồng ý</string>
+    <string name="privacy_policy_menu_item">Chính sách bảo mật</string>
+    <string name="revoke_device_admin_permission_menu_item">Thu hồi quyền quản trị thiết bị</string>
+    <string name="root_access_failed">Không thể truy cập root</string>
+    <string name="pref_lock_screen_with_power_button_as_root">Làm việc xung quanh cho vân tay và khóa thông minh</string>
+    <string name="pref_lock_screen_when_landscape">Khóa ở chế độ nằm ngang</string>
+    <string name="pref_lock_screen_mode_summary">Tắt và khóa màn hình khi bộ cảm biến khoảng cách được che phủ.</string>
+    <string name="pref_pocket_mode">Chế độ bỏ túi</string>
+    <string name="pref_wave_mode_summary">Bật màn hình khi bạn lướt qua cảm biến khoảng cách.</string>
+</resources>
