@@ -1,0 +1,76 @@
+<!--
+  ~ Copyright (c) 2017 Ole Carlsen
+  ~
+  ~ This file is part of WaveUp.
+  ~
+  ~ WaveUp is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ WaveUp is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with WaveUp.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<resources>
+    <string name="app_name">WaveUp</string>
+
+    <string name="prefs_service">Tjeneste</string>
+    <string name="pref_enable">Aktivere</string>
+
+    <string name="prefs_modes">WaveUp tilstande</string>
+    <string name="pref_wave_mode">Vinke tilstand</string>
+    <string name="pref_wave_mode_summary">Tænd for skærmen når du vinker over nærhedsføleren.</string>
+    <string name="pref_pocket_mode">Lomme tilstand</string>
+    <string name="pref_pocket_mode_summary">Tænd for skærmen når du tager enheden op af din lomme eller taske.</string>
+
+    <string name="pref_lock_screen">Lås skærm</string>
+    <string name="pref_lock_screen_mode_summary">Sluk skærmen når nærhedsføleren er dækket.</string>
+    <string name="pref_lock_screen_when_landscape">Lås i vandret tilstand</string>
+    <string name="pref_lock_screen_when_landscape_summary">Deaktivere dette for at forhindre låsning, når du holder enheden vandret for eksempelvis at se medier.</string>
+    <string name="pref_lock_screen_with_power_button_as_root">Løsning til fingeraftryk og smart lås</string>
+    <string name="pref_lock_screen_with_power_button_as_root_summary">Sluk skærmen simulerende et tændknap tryk. Kræver rod adgang.</string>
+    <string name="pref_lock_screen_vibrate_on_lock">Vibrere før låsning</string>
+    <string name="pref_lock_screen_vibrate_on_lock_summary">Meddeler dig om opdagelse af nærhed for at undgå at låse enheden ved et uheld.</string>
+    <string name="pref_sensor_cover_time_before_locking_screen">Dæknings-tid før låsning</string>
+    <string name="pref_sensor_cover_time_before_locking_screen_summary">Tid nærhedsføleren skal dækkes før låsning. Nuværende værdi: %s.</string>
+
+    <string name="wave_up_service_started">WaveUp tjeneste kører</string>
+    <string name="wave_up_service_stopped">WaveUp tjeneste kører ikke</string>
+
+    <string name="lock_admin_rights_explanation">For at låse skærmen, når du dækker nærhedsføleren, skal du aktivere administrator rettigheder for WaveUp.</string>
+    <string name="root_access_failed">Kunne ikke få rod adgang</string>
+
+    <string name="uninstall_button">Afinstallere WaveUp</string>
+    <string name="removed_device_admin_rights">Fjernede administrator rettigheder. Aktivere \'Lås skærm\' tilstand, hvis du ønsker at give dem igen</string>
+
+    <!-- Initial alert dialog -->
+    <string name="alert_dialog_title">Velkommen til WaveUp</string>
+    <string name="alert_dialog_message"><b>Afinstallation:</b> Hvis du ønsker at afinstallere WaveUp, kan du gøre det indefra appen (der er en knap for dette nederst). \n\n<b>(Påstået) batteri-tømning:</b> afhængigt af din Android-version, kan din enhed fejlagtigt rapportere en meget høj batteriforbrug. \n\nHav det sjovt med WaveUp! :)</string>
+    <string name="alert_dialog_ok_button">O.k.</string>
+
+    <!-- I put this array here instead of in arrays.xml because it has to be translated. -->
+    <string-array name="sensor_cover_time_entries">
+        <item>Med det samme</item>
+        <item>0,5 sekunder</item>
+        <item>1 sekund</item>
+        <item>1,5 sekunder</item>
+        <item>2 sekunder</item>
+        <item>5 sekunder</item>
+    </string-array>
+
+    <string name="pref_number_of_waves">Antal vink</string>
+    <string name="pref_number_of_waves_summary">Antal gange, du skal vinke over nærhedsføleren (dæk. dæk ikke) for at vække din enhed.\n\nNuværende værdi: %s.</string>
+
+    <string-array name="number_of_waves_entries">
+        <item>1 (dæk, dæk ikke)</item>
+        <item>2 (dæk, dæk ikke, dæk, dæk ikke)</item>
+        <item>3 (dæk, dæk ikke, dæk, dæk ikke, dæk, dæk ikke)</item>
+    </string-array>
+
+    </resources>

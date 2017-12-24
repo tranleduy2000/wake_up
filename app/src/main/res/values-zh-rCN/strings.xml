@@ -1,0 +1,78 @@
+<!--
+  ~ Copyright (c) 2017 Litten (砾天 顾)
+  ~
+  ~ This file is part of WaveUp.
+  ~
+  ~ WaveUp is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ WaveUp is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with WaveUp.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<resources>
+    <string name="app_name">挥手亮屏</string>
+
+    <string name="prefs_service">服务</string>
+    <string name="pref_enable">开启</string>
+
+    <string name="prefs_modes">挥手亮屏</string>
+    <string name="pref_wave_mode">挥手模式</string>
+    <string name="pref_wave_mode_summary">挥过距离传感器时亮屏</string>
+    <string name="pref_pocket_mode">口袋模式</string>
+    <string name="pref_pocket_mode_summary">从口袋或钱包中掏出手机时亮屏</string>
+
+    <string name="pref_lock_screen">锁屏</string>
+    <string name="pref_lock_screen_mode_summary">距离传感器被遮挡时锁屏</string>
+    <string name="pref_lock_screen_when_landscape">横屏时锁屏</string>
+    <string name="pref_lock_screen_when_landscape_summary">不要勾选此项以避免在诸如横放手机看视频的情况下锁屏</string>
+    <string name="pref_lock_screen_with_power_button_as_root">兼容使用指纹和智能锁</string>
+    <string name="pref_lock_screen_with_power_button_as_root_summary">模拟按下电源键以关屏（需要root权限）</string>
+    <string name="pref_lock_screen_vibrate_on_lock">锁屏前振动</string>
+    <string name="pref_lock_screen_vibrate_on_lock_summary">提醒以避免意外锁屏</string>
+    <string name="pref_sensor_cover_time_before_locking_screen">锁屏遮挡时间</string>
+    <string name="pref_sensor_cover_time_before_locking_screen_summary">锁屏前距离传感器需要被遮挡的时间（当前时间：%s）</string>
+
+    <string name="wave_up_service_started">挥手亮屏服务运行中</string>
+    <string name="wave_up_service_stopped">挥手亮屏服务未运行</string>
+
+    <string name="lock_admin_rights_explanation"><b>设备锁定：设备管理员</b>\n\n我们需要激活设备管理员以使用锁屏功能。\n\n激活设备管理员后，你将无法正常卸载该应用。\n\n如果你想取消激活设备管理员，请打开挥手亮屏，进入高级设置（右上角按钮），点击“取消激活设备管理员”。或者你可以进入<i>系统设置→安全→设备管理器</i>（因厂商系统不同，设置中的设备管理器位置可能不同），取消勾选挥手亮屏。\n\n如果你希望卸载挥手亮屏，请点击应用底部“卸载挥手亮屏”按钮，以取消激活设备管理员并直接卸载应用。\n\n你确定要激活设备管理员吗？</string>
+    <string name="root_access_failed">无法获取root权限</string>
+
+    <string name="revoke_device_admin_permission_menu_item">取消激活设备管理员</string>
+
+    <string name="uninstall_button">卸载挥手亮屏</string>
+    <string name="removed_device_admin_rights">已取消激活设备管理员。如果你希望重新激活，请打开“锁屏”选项</string>
+
+    <!-- Initial alert dialog -->
+    <string name="alert_dialog_title">欢迎使用挥手亮屏！</string>
+    <string name="alert_dialog_message"><b>卸载：</b>如果你希望卸载挥手亮屏，请点击应用底部的卸载按钮\n\n<b>（注意）电量耗尽：</b>由于安卓版本不同，你的设备可能会错误地报告应用高电耗，请不必在意\n\n祝你使用愉快！:)</string>
+    <string name="alert_dialog_ok_button">确定</string>
+
+    <!-- I put this array here instead of in arrays.xml because it has to be translated. -->
+    <string-array name="sensor_cover_time_entries">
+        <item>立刻</item>
+        <item>0.5秒</item>
+        <item>1秒</item>
+        <item>1.5秒</item>
+        <item>2秒</item>
+        <item>5秒</item>
+    </string-array>
+
+    <string name="pref_number_of_waves">挥手次数</string>
+    <string name="pref_number_of_waves_summary">亮屏前挥过距离传感器的次数（遮挡然后移开为一次）\n\n当前次数：%s</string>
+
+    <string-array name="number_of_waves_entries">
+        <item>1次（遮挡，移开）</item>
+        <item>2次（遮挡，移开，遮挡，移开）</item>
+        <item>3次（遮挡，移开，遮挡，移开，遮挡，移开）</item>
+    </string-array>
+
+    </resources>

@@ -1,0 +1,13 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.jarsilio.android.waveup.MainActivity" >
+    <item android:id="@+id/revoke_device_admin_menu_item"
+        android:title="@string/revoke_device_admin_permission_menu_item"
+        android:orderInCategory="50"
+        app:showAsAction="never" />
+    <item android:id="@+id/privacy_policy_menu_item"
+        android:title="@string/privacy_policy_menu_item"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+</menu>

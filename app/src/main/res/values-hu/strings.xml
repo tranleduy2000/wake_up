@@ -1,0 +1,53 @@
+<!--
+  ~ Copyright (c) 2016 gidano | sympda.blog.hu
+  ~
+  ~ This file is part of WaveUp.
+  ~
+  ~ WaveUp is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ WaveUp is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with WaveUp.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<resources>
+    <string name="app_name">WaveUp HU</string>
+
+    <string name="prefs_service">Szolgáltatás</string>
+    <string name="pref_enable">Bekapcsolás</string>
+
+    <string name="prefs_modes">WaveUp üzemmódok</string>
+    <string name="pref_wave_mode">Integető üzemmód</string>
+    <string name="pref_wave_mode_summary">Bekapcsolja a képernyőt a közelség érzékelő előtti kézmozdulatra.</string>
+    <string name="pref_pocket_mode">Zseb üzemmód</string>
+    <string name="pref_pocket_mode_summary">Bekapcsolja a képernyőt zsebből vagy táskából előhúzva.</string>
+
+    <string name="pref_lock_screen">Képernyő lezárás</string>
+    <string name="pref_lock_screen_mode_summary">Automatikusan lezárja a képernyőt, ha a közelség érzékelő min. 1mp-ig le van fedve.</string>
+    <string name="pref_lock_screen_when_landscape">Lezárás fekvő módban</string>
+    <string name="pref_lock_screen_with_power_button_as_root">Megkerülése Smart Lock-kal</string>
+    <string name="pref_lock_screen_with_power_button_as_root_summary">Rootot igényel. Képernyő kikapcsolás szimulálása a bekapcsoló gomb megnyomásával.</string>
+    <string name="pref_lock_screen_vibrate_on_lock">Rezgés feloldás előtt</string>
+    <string name="pref_lock_screen_vibrate_on_lock_summary">Értesít a közelségről, megelőzendő a készülék véletlen lezárását.</string>
+    <string name="wave_up_service_started">A WaveUp szolgáltatás fut</string>
+    <string name="wave_up_service_stopped">A WaveUp szolgáltatás nem fut</string>
+
+    <string name="lock_admin_rights_explanation">Annak érdekében, hogy a képernyőt le tudd zárni a mozgásérzékelő eltakarásával, adminisztrátor jogosultságot kell engedélyezned a WaveUp részére.</string>
+    <string name="root_access_failed">"Nem sikerült root hozzáférést szerezni"</string>
+
+    <string name="uninstall_button">A WaveUp eltávolítása</string>
+    <string name="removed_device_admin_rights">"Rendszergazdai jogok eltávolítva. Csak aktiváld a 'Képernyő lezárás' opciót, ha újra engedélyeztetni szeretnéd"</string>
+
+    <!-- Initial alert dialog -->
+    <string name="alert_dialog_title">Köszönt a WaveUp!</string>
+    <string name="alert_dialog_message"><b>Eltávolítás:</b> ha szeretnéd a  WaveUp eltávolítását, ezt megteheted az alkalmazáson belül (ehhez van egy gomb alul).\n\n<b>(Állítólagos) akku szivárgás:</b> saját Android verziódtól függően, az eszköz esetleg tévesen jelentheti a magas akkuhasználatot.\n\nJó szórakozást kíván a WaveUp! :)</string>
+    <string name="alert_dialog_ok_button">OKÉ</string>
+
+    </resources>

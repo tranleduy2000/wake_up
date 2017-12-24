@@ -1,0 +1,76 @@
+<!--
+  ~ Copyright (c) 2017 Aitor Beriain
+  ~
+  ~ This file is part of WaveUp.
+  ~
+  ~ WaveUp is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ WaveUp is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with WaveUp.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<resources>
+    <string name="app_name">WaveUp</string>
+
+    <string name="prefs_service">Zerbitzua</string>
+    <string name="pref_enable">Gaitu</string>
+
+    <string name="prefs_modes">WaveUp moduak</string>
+    <string name="pref_wave_mode">Keinu modua</string>
+    <string name="pref_wave_mode_summary">Pantaila piztu hurbiltasun sentsorearen gainean keinu egitean.</string>
+    <string name="pref_pocket_mode">Poltsiko modua</string>
+    <string name="pref_pocket_mode_summary">Pantaila piztu mugikorra poltsiko edo poltsatik ateratzerakoan.</string>
+
+    <string name="pref_lock_screen">Pantaila blokeatu</string>
+    <string name="pref_lock_screen_mode_summary">Hurbiltasun sentsorea estaltzen denean pantaila itzali eta blokeatu.</string>
+    <string name="pref_lock_screen_when_landscape">Blokeatu paisaia moduan</string>
+    <string name="pref_lock_screen_when_landscape_summary">Ezgaitu ezazu hau gailua horizontalki duzunean pantaila blokeatzea saihesteko, adibidez bideo edo argazki bat ikusterakoan.</string>
+    <string name="pref_lock_screen_with_power_button_as_root">Fingerprint eta Smart Lockerako konponketa</string>
+    <string name="pref_lock_screen_with_power_button_as_root_summary">Pantaila itzali pizteko botoia sakatu dela simulatuz. Root behar du.</string>
+    <string name="pref_lock_screen_vibrate_on_lock">Dardaratu blokeatu aurretik</string>
+    <string name="pref_lock_screen_vibrate_on_lock_summary">Hurbiltasuna detektatu delaz jakinarazten zaitu gailua nahi gabe blokeatzea saihesteko.</string>
+    <string name="pref_sensor_cover_time_before_locking_screen">Estaltze denbora blokeatu aurretik</string>
+    <string name="pref_sensor_cover_time_before_locking_screen_summary">Hurbiltasun sentsorea estalita egon behar den denbora pantaila blokeatu aurretik. Oraingo balioa: %s.</string>
+
+    <string name="wave_up_service_started">WaveUp zerbitzua martxan da</string>
+    <string name="wave_up_service_stopped">WaveUp zerbitzua ez dago martxan</string>
+
+    <string name="lock_admin_rights_explanation">Hurbiltasun sentsorea estaltzerakoan pantaila blokeatu ahal izateko, WaveUperako administratzale baimenak gaitu beharko dituzu.</string>
+    <string name="root_access_failed">Ezin izan da root sarrera lortu</string>
+
+    <string name="uninstall_button">WaveUp desinstalatu</string>
+    <string name="removed_device_admin_rights">Administratzaile baimenak kendu dira. \'Pantaila blokeatu\' aukera aktibatu ezazu hauek berriro eskuratzeko</string>
+
+    <!-- Initial alert dialog -->
+    <string name="alert_dialog_title">Ongi etorri WaveUpera!</string>
+    <string name="alert_dialog_message"><b>Desinstalatu:</b> WaveUp desinstalatu nahi baduzu, aplikaziotik bertatik egin ezazu (botoi bat dago horretarako beheko partean).\n\n<b>(Ustezko) gehiegizko bateriaren kontsumoa:</b> zure Android bertsioaren arabera, baliteke zure gailuak bateriaren erabilera okerra adieraztea.\n\nOndo pasa WaveUpekin! :)</string>
+    <string name="alert_dialog_ok_button">Ados</string>
+
+    <!-- I put this array here instead of in arrays.xml because it has to be translated. -->
+    <string-array name="sensor_cover_time_entries">
+        <item>Berehala</item>
+        <item>0,5 segundu</item>
+        <item>Segundu 1</item>
+        <item>1,5 segundu</item>
+        <item>2 segundu</item>
+        <item>5 segundu</item>
+    </string-array>
+
+    <string name="pref_number_of_waves">Keinuen kopurua</string>
+    <string name="pref_number_of_waves_summary">Hurbiltasun sentsorearen gainean keinu egin behar dituzun aldiak (estali eta desestali) zure gailua esnatzeko.\n\nOraingo balioa: %s.</string>
+
+    <string-array name="number_of_waves_entries">
+        <item>1 (estali, desestali)</item>
+        <item>2 (estali, desestali, estali, desestali)</item>
+        <item>3 (estali, desestali, estali, desestali, estali, desestali)</item>
+    </string-array>
+
+    </resources>

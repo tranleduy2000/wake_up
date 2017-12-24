@@ -1,0 +1,78 @@
+<!--
+  ~ Copyright (c) 2017 Nikola Gerogiev
+  ~
+  ~ This file is part of WaveUp.
+  ~
+  ~ WaveUp is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ WaveUp is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with WaveUp.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<resources>
+    <string name="app_name">WaveUp</string>
+
+    <string name="prefs_service">Услуга</string>
+    <string name="pref_enable">Включване</string>
+
+    <string name="prefs_modes">Вид отключване</string>
+    <string name="pref_wave_mode">Отключване с помахване</string>
+    <string name="pref_wave_mode_summary">Включете екрана като помахате с ръка над сензора за близост.</string>
+    <string name="pref_pocket_mode">Режим \"калъф\"</string>
+    <string name="pref_pocket_mode_summary">Включете екрана като извадите телефона си от калъфа.</string>
+
+    <string name="pref_lock_screen">Заключване на екрана</string>
+    <string name="pref_lock_screen_mode_summary">Заключи екрана при активен сензор за близост.</string>
+    <string name="pref_lock_screen_when_landscape">Заключване във широкоекранен режим</string>
+    <string name="pref_lock_screen_when_landscape_summary">Изключете опцията, за да не се заключва екрана, когато телефонът е в хоризонтално положение, например когато гледате видео клип.</string>
+    <string name="pref_lock_screen_with_power_button_as_root">Отключване с пръстов отпечатък или Smart Lock</string>
+    <string name="pref_lock_screen_with_power_button_as_root_summary">Изключване на екрана, симулирайки натискане на бутона за изключване. Изисква root.</string>
+    <string name="pref_lock_screen_vibrate_on_lock">Вибрация при заключване</string>
+    <string name="pref_lock_screen_vibrate_on_lock_summary">Предупреждение, че сензора за близост е активиран, с цел предотвратяване на случайно заключване на екрана.</string>
+    <string name="pref_sensor_cover_time_before_locking_screen">Времето, за което сензора за близост да бъде активен за заключване на екрана.</string>
+    <string name="pref_sensor_cover_time_before_locking_screen_summary">Времето, за което сензора за близост да бъде активен преди заключване. Текущо време: %s.</string>
+
+    <string name="wave_up_service_started">Услугата WaveUp е включена</string>
+    <string name="wave_up_service_stopped">Услугата WaveUp е изключена</string>
+
+    <string name="lock_admin_rights_explanation"><b>Заключване на устройството, използвайки Администраторски права</b>\n\nЗа да заключи екрана, WaveUp трябва да бъде администратор. След като получи тези права, приложението не може да бъде премахнато от устройството Ви по обичайния начин, без да му бъдат отнети администраторските права.\n\nЗа да ги отнемете, просто отворете приложението, изберете допълнителнителни настройки (в горния десен ъгъл) и натиснете \"Откажете администраторските права\". Другият начин е да отворите <i>Настройки → Сигурност → Администратори на устройството</i> и да премахнете WaveUp оттам.\n\nАко направо искате да деинсталирате WaveUp от устройството си, просто натиснете бутона \"Премахване на WaveUp\" най-отдолу, който автоматично ще деинсталира приложението.\n\n<i>Съгласни ли сте да дадете администраторски права на това приложение?</i></string>
+    <string name="root_access_failed">Няма root достъп.</string>
+
+    <string name="revoke_device_admin_permission_menu_item">Изключете администраторските права</string>
+
+    <string name="uninstall_button">Премахване на WaveUp</string>
+    <string name="removed_device_admin_rights">Администраторските права са отменени. Включете опцията \" Заключване на екрана\", за да ги разрешите отново.</string>
+
+    <!-- Initial alert dialog -->
+    <string name="alert_dialog_title">Добре дошли във WaveUp!</string>
+    <string name="alert_dialog_message"><b>Деинсталиране</b> Ако искате да премахнете приложението, (направете го, използвайки бутона най-долу.)\n\n <b>(Внимание)</b> в зависимост от версията на Андроид, която ползвате, е възможно устройството ви да показва погрешно прекалена употреба на батерията.\n\nПриятно ползване на приложението! :-)</string>
+    <string name="alert_dialog_ok_button">ОК</string>
+
+    <!-- I put this array here instead of in arrays.xml because it has to be translated. -->
+    <string-array name="sensor_cover_time_entries">
+        <item>Веднага</item>
+        <item>0.5 секунда</item>
+        <item>1 секунда</item>
+        <item>1.5 секунди</item>
+        <item>2 секунди</item>
+        <item>5 секунди</item>
+    </string-array>
+
+    <string name="pref_number_of_waves">Брой помахвания</string>
+    <string name="pref_number_of_waves_summary">Брой пъти, необходими да помахате над сензора за близост (да го покриете и откриете), за да включите екрана.\n\nТекуща стойност: %s.</string>
+
+    <string-array name="number_of_waves_entries">
+        <item>1 (покриване, откриване)</item>
+        <item>2 (покриване, откриване, покриване, откриване)</item>
+        <item>3 (покриване, откриване, покриване, откриване, покриване, откриване)</item>
+    </string-array>
+
+    </resources>

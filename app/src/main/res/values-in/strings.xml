@@ -1,0 +1,66 @@
+<!--
+  ~ Copyright (c) 2017 Christo Agveriandika
+  ~
+  ~ This file is part of WaveUp.
+  ~
+  ~ WaveUp is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ WaveUp is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with WaveUp.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<resources>
+    <string name="app_name">WaveUp</string>
+
+    <string name="prefs_service">Layanan</string>
+    <string name="pref_enable">Hidupkan</string>
+
+    <string name="prefs_modes">Mode-mode WaveUp</string>
+    <string name="pref_wave_mode">mode Wave</string>
+    <string name="pref_wave_mode_summary">Hidupkan layar ketika Anda melambai di atas sensor jarak / proximity.</string>
+    <string name="pref_pocket_mode">Mode saku</string>
+    <string name="pref_pocket_mode_summary">Hidupkan layar ketika Anda mengambil perangkat dari saku atau tas Anda.</string>
+
+    <string name="pref_lock_screen">Kunci layar</string>
+    <string name="pref_lock_screen_mode_summary">Saat sensor jarak / proximity tertutup, maka layar akan mati dan terkunci.</string>
+    <string name="pref_lock_screen_when_landscape">Kunci dalam mode bentang datar / landscape</string>
+    <string name="pref_lock_screen_when_landscape_summary">Matikan pilihan ini untuk mencegah penguncian layar ketika memegang perangkat secara mendatar / horizontal saat meninjau media sebagai contoh.</string>
+    <string name="pref_lock_screen_with_power_button_as_root">Bekerja melewati aplikasi Smart Lock</string>
+    <string name="pref_lock_screen_with_power_button_as_root_summary">Memerlukan akses dasar / root. Mematikan layar memperagakan penekanan pada tombol daya.</string>
+    <string name="pref_lock_screen_vibrate_on_lock">Getar sebelum mengunci</string>
+    <string name="pref_lock_screen_vibrate_on_lock_summary">Memberitahukan kepada Anda tentang pendeteksian jarak agar terhindar dari penguncian perangkat tanpa sengaja.</string>
+    <string name="pref_sensor_cover_time_before_locking_screen">Jeda waktu penutupan sensor sebelum dilakukan penguncian</string>
+    <string name="pref_sensor_cover_time_before_locking_screen_summary">Lama waktu penutupan sensor jarak / proximity sebelum dilakukan penguncian layar. Pilihan saat ini adalah: %s.</string>
+
+    <string name="wave_up_service_started">Layanan WaveUp sedang berjalan</string>
+    <string name="wave_up_service_stopped">Layanan WaveUp tidak berjalan</string>
+
+    <string name="lock_admin_rights_explanation">Agar penguncian layar dapat dilakukan saat sensor jarak / proximity tertutup, maka Anda akan diminta untuk memberikan hak istimewa perangkat untuk aplikasi WaveUp</string>
+    <string name="root_access_failed">Tidak mampu mendapatkan akses dasar / root</string>
+
+    <string name="uninstall_button">Hapus aplikasi WaveUp</string>
+    <string name="removed_device_admin_rights">Cabut hak admin. Cukup hidupkan pilihan \'Pengunci layar\' apabila Anda hendak mengizinkan penggunaan fitur ini kembali</string>
+
+    <!-- Initial alert dialog -->
+    <string name="alert_dialog_title">Selamat datang dalam aplikasi WaveUp!</string>
+    <string name="alert_dialog_message"><b>Menghapus aplikasi: </b> jika Anda berkehendak untuk menghapus aplikasi WaveUp, lakukan dari dalam aplikasi ini saja (terdapat tombol untuk melakukan hal tersebut pada bagian bawah aplikasi).\n\n <b>(Dugaan) terkurasnya daya baterai;</b>bergantung pada versi Android dalam perangkat, perangkat Anda dapat melaporkan penggunaan daya baterai dengan tidak benar.\n\n Selamat bersenang-senang dengan WaveUp! :)</string>
+    <string name="alert_dialog_ok_button">BAIK</string>
+
+    <!-- I put this array here instead of in arrays.xml because it has to be translated. -->
+    <string-array name="sensor_cover_time_entries">
+        <item>Secepatnya</item>
+        <item>0,5 detik</item>
+        <item>1 detik</item>
+        <item>1,5 detik</item>
+        <item>2 detik</item>
+        <item>5 detik</item>
+    </string-array>
+</resources>

@@ -1,0 +1,66 @@
+<!--
+  ~ Copyright (c) 2016 Chorus Pocus
+  ~
+  ~ This file is part of WaveUp.
+  ~
+  ~ WaveUp is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ WaveUp is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with WaveUp.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<resources>
+    <string name="app_name">WaveUp</string>
+
+    <string name="prefs_service">Serviço</string>
+    <string name="pref_enable">Ativar</string>
+
+    <string name="prefs_modes">Modos de WaveUp</string>
+    <string name="pref_wave_mode">Modo Wave</string>
+    <string name="pref_wave_mode_summary">Ascender a tela quando você passar a mão por cima do sensor de proximidade.</string>
+    <string name="pref_pocket_mode">Modo bolso</string>
+    <string name="pref_pocket_mode_summary">Ascender a tela quando você tirar o celular do bolso ou bolsa.</string>
+
+    <string name="pref_lock_screen">Bloquear tela</string>
+    <string name="pref_lock_screen_mode_summary">Quando o sensor de proximidade está coberto a tela fica desligada e bloqueada.</string>
+    <string name="pref_lock_screen_when_landscape">Bloquear em modo paissagem</string>
+    <string name="pref_lock_screen_when_landscape_summary">Desative esta opção para prevenir o bloqueo quando o celular estiver em modo paissagem para assistir videos por exemplo.</string>
+    <string name="pref_lock_screen_with_power_button_as_root">Dar um jeitinho para o Smart Lock</string>
+    <string name="pref_lock_screen_with_power_button_as_root_summary">Precisa root. Desligar a tela simulando apertar o botão de liga/desliga</string>
+    <string name="pref_lock_screen_vibrate_on_lock">Vibrar antes de bloquear</string>
+    <string name="pref_lock_screen_vibrate_on_lock_summary">Notificar caso seja detectada proximidade para evitar o bloqueio do aparelho acidentalmente.</string>
+    <string name="pref_sensor_cover_time_before_locking_screen">Tempo coberto até o bloqueio</string>
+    <string name="pref_sensor_cover_time_before_locking_screen_summary">Quanto tempo deve estar o sensor de proximidade coverto até o bloqueo. Valor atual: %s.</string>
+
+    <string name="wave_up_service_started">O serviço de WaveUp está ligado</string>
+    <string name="wave_up_service_stopped">O serviço de WaveUp está desligado</string>
+
+    <string name="lock_admin_rights_explanation">Para bloquear a tela quando o sensor de proximidade estiver coberto, você precisa dar permissões de administrador para WaveUp.</string>
+    <string name="root_access_failed">Não foi possível acessar à rota</string>
+
+    <string name="uninstall_button">Desinstalar WaveUp</string>
+    <string name="removed_device_admin_rights">As permissões de administrador foram removidas. Ligue novamente a opção \'Bloqueio de tela\' se as quiser ativar novamente</string>
+
+    <!-- Initial alert dialog -->
+    <string name="alert_dialog_title">Bemvindo ao WaveUp!</string>
+    <string name="alert_dialog_message"><b>Desinstalação:</b> se você quiser desinstalar o WaveUp!, pode fazê-lo diretamente no aplicativo (há um botão no final).\n\n<b>(Alegado) consumo de bateria:</b> dependendo da sua versão do Android, seu aparelho poderá reportar erradamente um consumo de bateria elevado.\n\n Curta o WaveUp! :)</string>
+    <string name="alert_dialog_ok_button">OK</string>
+
+    <!-- I put this array here instead of in arrays.xml because it has to be translated. -->
+    <string-array name="sensor_cover_time_entries">
+        <item>Imediatamente</item>
+        <item>0,5 segundos</item>
+        <item>1 segundo</item>
+        <item>1,5 segundos</item>
+        <item>2 segundos</item>
+        <item>5 segundos</item>
+    </string-array>
+</resources>

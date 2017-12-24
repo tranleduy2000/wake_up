@@ -1,0 +1,78 @@
+<!--
+  ~ Copyright (c) 2017 Jeroen
+  ~
+  ~ This file is part of WaveUp.
+  ~
+  ~ WaveUp is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ WaveUp is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with WaveUp.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<resources>
+    <string name="app_name">WaveUp</string>
+
+    <string name="prefs_service">Service</string>
+    <string name="pref_enable">Actief</string>
+
+    <string name="prefs_modes">WaveUp modi</string>
+    <string name="pref_wave_mode">Zwaai modus</string>
+    <string name="pref_wave_mode_summary">Schakel scherm in wanneer je over de nabijheidssensor zwaait</string>
+    <string name="pref_pocket_mode">Broekzak modus</string>
+    <string name="pref_pocket_mode_summary">Schakel scherm in wanneer je de telefoon uit je broekzak of hoes haalt</string>
+
+    <string name="pref_lock_screen">Schermvergrendeling</string>
+    <string name="pref_lock_screen_mode_summary">Schakel scherm uit en vergrendel wanneer de nabijheidssensor wordt bedekt</string>
+    <string name="pref_lock_screen_when_landscape">Vergrendel in landschap modus</string>
+    <string name="pref_lock_screen_when_landscape_summary">Vergrendel de telefoon ook wanneer deze in landschap modus wordt gebruikt, bijv. bij het bekijken van media</string>
+    <string name="pref_lock_screen_with_power_button_as_root">Work around voor vingerafdruk en smart lock</string>
+    <string name="pref_lock_screen_with_power_button_as_root_summary">Schakel scherm uit door gesimuleerde druk op aan/uit knop. Root toegang vereist.</string>
+    <string name="pref_lock_screen_vibrate_on_lock">Trillen voor vergrendeling</string>
+    <string name="pref_lock_screen_vibrate_on_lock_summary">Notificeer een nabijheidsdetectie om onbedoeld vergrendelen te voorkomen.</string>
+    <string name="pref_sensor_cover_time_before_locking_screen">Afdektijd voor vergrendeling</string>
+    <string name="pref_sensor_cover_time_before_locking_screen_summary">Tijdsduur welke de nabijheidssensor afgedekt moet zijn voordat het scherm vergrendelt. Huidige waarde%s.</string>
+
+    <string name="wave_up_service_started">WaveUp Service is actief</string>
+    <string name="wave_up_service_stopped">WaveUp Service is niet actief</string>
+
+    <string name="lock_admin_rights_explanation"><b>Vergrendel scherm: Apparaatbeheerder</b>\n\nOm het scherm te kunnen vergrendelen moet WaveUp als apparaatbeheerder worden ingesteld.\n\nWanneer een app eenmaal is ingesteld als apparaatbeheerder is deze app niet te verwijderen zonder eerst de apparaatbeheerder permissie in te trekken.\n\nOm de apparaatbeheerder permissie in te trekken, start WaveUp en klik rechts-boven op \'Apparaatbeheerder permissie intrekken\'. Ook is het mogelijk om in <i>Instellingen → Beveiliging → Apparaatbeheerders </i> WaveUp te deselecteren.\n\nOm WaveUp te verwijderen gebruik de verwijder-knop binnen de app (onderaan de app) welke tevens de apparaatbeheerder permissie intrekt.\n\nWaveUp instellen als apparaatbeheerder?</string>
+    <string name="root_access_failed">Kan geen root toegang krijgen</string>
+
+    <string name="revoke_device_admin_permission_menu_item">Root toegang intrekken</string>
+
+    <string name="uninstall_button">Verwijder WaveUp</string>
+    <string name="removed_device_admin_rights">Administrator rechten verwijderd. Activeer de \'Schermvergrendeling\' optie om deze weer opnieuw toe te passen.</string>
+
+    <!-- Initial alert dialog -->
+    <string name="alert_dialog_title">Welkom bij WaveUp!</string>
+    <string name="alert_dialog_message"><b>Verwijderen:</b> Om WaveUp goed te kunnen verwijderen is het belangrijk dat hiervoor de verwijder-knop binnen de app wordt gebruikt (onderaan de app)!\n\n<b>(Zogenaamd hoog) accu verbruik:</b> sommige Android versies kunnen een hoog accu verbruik rapporteren, dit is niet correct.\n\nVeel plezier met WaveUp! :)</string>
+    <string name="alert_dialog_ok_button">OK</string>
+
+    <!-- I put this array here instead of in arrays.xml because it has to be translated. -->
+    <string-array name="sensor_cover_time_entries">
+        <item>Direct</item>
+        <item>0,5 seconde</item>
+        <item>1 seconde</item>
+        <item>1,5 seconde</item>
+        <item>2 seconden</item>
+        <item>5 seconden</item>
+    </string-array>
+
+    <string name="pref_number_of_waves">Aantal zwaaibewegingen</string>
+    <string name="pref_number_of_waves_summary">Aantal zwaaibewegingen over de nabijheidssensor om het scherm in te schakelen.\n\nHuidige waarde%s.</string>
+
+    <string-array name="number_of_waves_entries">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
+    </resources>

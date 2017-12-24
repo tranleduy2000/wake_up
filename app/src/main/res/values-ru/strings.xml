@@ -1,0 +1,66 @@
+<!--
+  ~ Copyright (c) 2017 Nikita Zolin
+  ~
+  ~ This file is part of WaveUp.
+  ~
+  ~ WaveUp is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ WaveUp is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with WaveUp.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<resources>
+    <string name="app_name">WaveUp</string>
+
+    <string name="prefs_service">Приложение</string>
+    <string name="pref_enable">Включить</string>
+
+    <string name="prefs_modes">Режимы работы</string>
+    <string name="pref_wave_mode">Режим \"взмаха\"</string>
+    <string name="pref_wave_mode_summary">Включать экран, при взмахе около датчика приближения.</string>
+    <string name="pref_pocket_mode">Режим \"в кармане\"</string>
+    <string name="pref_pocket_mode_summary">Включать экран, при вытаскивании телефона из кармана или сумки.</string>
+
+    <string name="pref_lock_screen">Блокировка экрана</string>
+    <string name="pref_lock_screen_mode_summary">Когда датчик приближения закрыт, экран гаснет и блокируется.</string>
+    <string name="pref_lock_screen_when_landscape">Блокировка в альбомном режиме</string>
+    <string name="pref_lock_screen_when_landscape_summary">Отключить эту функцию, чтобы предотвратить блокировку при удержании устройства по горизонтали при просмотре видео, например.</string>
+    <string name="pref_lock_screen_with_power_button_as_root">Обход \"Smart Lock\"</string>
+    <string name="pref_lock_screen_with_power_button_as_root_summary">Требуются рут-права! Выключает экран имитацией нажатия кнопки питания.</string>
+    <string name="pref_lock_screen_vibrate_on_lock">Вибрировать перед блокировкой</string>
+    <string name="pref_lock_screen_vibrate_on_lock_summary">Уведомление для избежания случайной блокировки устройства.</string>
+    <string name="pref_sensor_cover_time_before_locking_screen">Задержка перед блокировкой</string>
+    <string name="pref_sensor_cover_time_before_locking_screen_summary">Время срабатывания датчика приближения перед блокировкой. Текущее значение: %s.</string>
+
+    <string name="wave_up_service_started">WaveUp работает</string>
+    <string name="wave_up_service_stopped">WaveUp не работает</string>
+
+    <string name="lock_admin_rights_explanation">Для того, чтобы заблокировать экран, когда вы закрываете датчик приближения, вам необходимо включить права администратора для WaveUp.</string>
+    <string name="root_access_failed">Невозможно получить рут - права!</string>
+
+    <string name="uninstall_button">Удалить WaveUp</string>
+    <string name="removed_device_admin_rights">Удалены рут - права. Включите опцию \"Блокировка экрана\", если хотите предоставить их снова</string>
+
+    <!-- Initial alert dialog -->
+    <string name="alert_dialog_title">Добро пожаловать в WaveUp!</string>
+    <string name="alert_dialog_message"><b>Удаление:</b> если Вы желаете удалить WaveUp, сделайте это из приложения (кнопка внизу). \n\n<b>(Предполагается) утечка заряда батареи:</b> зависит от версии Андроид, устройство может ошибочно сообщить о высоком расходе батареи. \n\nНаслаждайтесь использованием WaveUp! :)</string>
+    <string name="alert_dialog_ok_button">OK</string>
+
+    <!-- I put this array here instead of in arrays.xml because it has to be translated. -->
+    <string-array name="sensor_cover_time_entries">
+        <item>Немедленно</item>
+        <item>0.5 секунд</item>
+        <item>1 секунда</item>
+        <item>1.5 секунды</item>
+        <item>2 секунды</item>
+        <item>5 секунд</item>
+    </string-array>
+</resources>

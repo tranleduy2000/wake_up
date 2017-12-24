@@ -1,0 +1,82 @@
+<!--
+  ~ Copyright (c) 2016-2017 Juan García Basilio
+  ~
+  ~ This file is part of WaveUp.
+  ~
+  ~ WaveUp is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ WaveUp is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with WaveUp.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<resources>
+    <string name="app_name">WaveUp</string>
+
+    <string name="prefs_service">Service</string>
+    <string name="pref_enable">Enable</string>
+
+    <string name="prefs_modes">WaveUp modes</string>
+    <string name="pref_wave_mode">Wave mode</string>
+    <string name="pref_wave_mode_summary">Turn on screen when you wave over the proximity sensor.</string>
+    <string name="pref_pocket_mode">Pocket mode</string>
+    <string name="pref_pocket_mode_summary">Turn on screen when you take your phone out of your pocket or purse.</string>
+
+    <string name="pref_lock_screen">Lock screen</string>
+    <string name="pref_lock_screen_mode_summary">Turn off and lock screen when the proximity sensor is covered.</string>
+    <string name="pref_lock_screen_when_landscape">Lock in landscape mode</string>
+    <string name="pref_lock_screen_when_landscape_summary">Disable this to prevent locking when holding the device horizontally to view media for example.</string>
+    <string name="pref_lock_screen_with_power_button_as_root">Work-around for Fingerprint and Smart Lock</string>
+    <string name="pref_lock_screen_with_power_button_as_root_summary">Turn off the screen simulating a power button press. Requires root.</string>
+    <string name="pref_lock_screen_vibrate_on_lock">Vibrate before locking</string>
+    <string name="pref_lock_screen_vibrate_on_lock_summary">Notifies you of detection of proximity to avoid locking the phone accidentally.</string>
+    <string name="pref_sensor_cover_time_before_locking_screen">Cover time before locking</string>
+    <string name="pref_sensor_cover_time_before_locking_screen_summary">Period of time proximity sensor has to be covered before locking. Current value: %s.</string>
+
+    <string name="wave_up_service_started">WaveUp service is running</string>
+    <string name="wave_up_service_stopped">WaveUp service is not running</string>
+
+    <string name="lock_admin_rights_explanation"><b>Lock device: Device Administrator</b>\n\nIn order to lock the screen, we need to set WaveUp as a Device Administrator.\n\nOnce an app is a Device Administrator, you won\'t be able to uninstall it normally without revoking the Device Admin Permission.\n\nIf you wish to revoke the Device Admin Permission, just open WaveUp, go to the advanced options (upper right corner) and tap on \'Revoke Device Admin Permission\'. Alternatively you can go to <i>Settings → Security → Device Administrators</i> and uncheck WaveUp.\n\nIf you wish to uninstall WaveUp just tap on the \'Uninstall WaveUp\' button at the bottom of the app which revokes the Device Admin Privilege <i>and</i> directly uninstalls WaveUp.\n\nAre you sure you want to set WaveUp as Device Administrator?</string>
+    <string name="root_access_failed">Couldn\'t get root access</string>
+
+    <string name="revoke_device_admin_permission_menu_item">Revoke Device Admin Permission</string>
+
+    <string name="uninstall_button">Uninstall WaveUp</string>
+    <string name="removed_device_admin_rights">Removed admin rights. Just activate the \'Lock screen\' option if you wish to grant these again</string>
+
+    <!-- Initial alert dialog -->
+    <string name="alert_dialog_title">Welcome to WaveUp!</string>
+    <string name="alert_dialog_message"><b>Uninstalling:</b> if you wish to uninstall WaveUp, just do so from within the app (there is a button for that at the bottom).\n\n<b>(Alleged) battery drain:</b> depending on your Android version, your device might wrongly report a very high battery usage.\n\nHave fun with WaveUp! :)</string>
+    <string name="alert_dialog_ok_button">OK</string>
+
+    <!-- I put this array here instead of in arrays.xml because it has to be translated. -->
+    <string-array name="sensor_cover_time_entries">
+        <item>Immediately</item>
+        <item>0.5 seconds</item>
+        <item>1 second</item>
+        <item>1.5 seconds</item>
+        <item>2 seconds</item>
+        <item>5 seconds</item>
+    </string-array>
+
+    <string name="pref_number_of_waves">Number of waves</string>
+    <string name="pref_number_of_waves_summary">Number of times you have to wave over the proximity sensor (cover and uncover) to wake up your device.\n\nCurrent value: %s.</string>
+
+    <string-array name="number_of_waves_entries">
+        <item>1 (cover, uncover)</item>
+        <item>2 (cover, uncover, cover, uncover)</item>
+        <item>3 (cover, uncover, cover, uncover, cover, uncover)</item>
+    </string-array>
+
+    <string name="privacy_policy_menu_item">Privacy Policy</string>
+    <string name="privacy_policy_dialog_title" translatable="false">WaveUp Privacy Policy</string>
+    <string name="privacy_policy_google_play_store_dialog_text" translatable="false">This privacy policy governs your use of the software application WaveUp for mobile devices that was created by juanitobananas (Juan García Basilio).\n\nThis privacy policy is possibly, though not probably, outdated. The newest privacy policy is available <a href="https://gitlab.com/juanitobananas/wave-up/blob/master/google-play-store/WaveUp-Privacy-Policy-Google-Play-Store.md#waveup-privacy-policy">here</a>.\n\n<b>Data collected by me</b>\n\nI, that is, the app developer, do not collect any personal information whatsoever.\n\n<b>Data collected by Google Play</b>\n\nGoogle Inc. provides the developer, i.e. me, with anonymised user data (aggregate data) through the Google Play Developer Console.\n\nIf you review the app Google Inc. will additionally provide information about your device (Device, Manufacturer, Device type, Device language, CPU make, CPU model, Native platform, RAM (MB), Screen size, Screen density (dpi), OpenGL ES version and OS).\n\nPlease refer to the Google Play Store Privacy Policy (<a href="https://play.google.com/about/privacy-security/">https://play.google.com/about/privacy-security/</a>) for more information on how Google Inc. handles your data.\n\n<b>Email communication</b>\n\nIf you contact me per email, I will exclusively use your contact data to process your inquiry.\n\nPlease feel free to contact me, e.g. per email (juanitobananas@gmail.com), if you want me to delete your data.\n\n<b>Why does WaveUp request \'Phone\' permissions? Will WaveUp \'make and manage phone calls\'?</b>\n\nNo. WaveUp will never make or manage phone calls. It also never knows with whom you speak on the phone. It uses this permission exclusively to know whether there is an ongoing call in order to deactivate itself during the call. No information related to the call is queried nor stored. Also the fact that there is an ongoing call is only known by the WaveUp app and is never sent elsewhere.</string>
+    <string name="privacy_policy_f_droid_dialog_text" translatable="false">This privacy policy governs your use of the software application WaveUp for mobile devices that was created by juanitobananas (Juan García Basilio).\n\nThis privacy policy is possibly, though not probably, outdated. The newest privacy policy is available <a href="https://gitlab.com/juanitobananas/wave-up/blob/master/f-droid/WaveUp-Privacy-Policy-F-Droid.md#waveup-privacy-policy">here</a>.\n\n<b>Data collected by me</b>\n\nI, that is, the app developer, do not collect any personal information whatsoever.\n\n<b>Data collected by F-Droid</b>\n\nAs far as I know, F-Droid Limited does not collect any personal information whatsoever.\n\nPlease refer to the F-Droid web page (<a href="https://f-droid.org/about/">https://f-droid.org/about/</a>) for more information.\n\n<b>Email communication</b>\n\nIf you contact me per email, I will exclusively use your contact data to process your inquiry.\n\nPlease feel free to contact me, e.g. per email (juanitobananas@gmail.com), if you want me to delete your data.\n\n<b>Why does WaveUp request \'Phone\' permissions? Will WaveUp \'make and manage phone calls\'?</b>\n\nNo. WaveUp will never make or manage phone calls. It also never knows with whom you speak on the phone. It uses this permission exclusively to know whether there is an ongoing call in order to deactivate itself during the call. No information related to the call is queried nor stored. Also the fact that there is an ongoing call is only known by the WaveUp app and is never sent elsewhere.</string>
+</resources>
