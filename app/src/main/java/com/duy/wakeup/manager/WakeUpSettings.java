@@ -40,7 +40,7 @@ public class WakeUpSettings {
     public static final String LOCK_SCREEN_WITH_POWER_BUTTON = "pref_lock_screen_with_power_button_as_root";
     public static final String SENSOR_COVER_TIME_BEFORE_LOCKING_SCREEN = "pref_sensor_cover_time_before_locking_screen"; // In milliseconds
     public static final String VIBRATE_ON_LOCK = "pref_lock_screen_vibrate_on_lock";
-    public static final String NUMBER_OF_WAVES="pref_number_of_waves";
+    public static final String NUMBER_OF_WAVES = "pref_number_of_waves";
     public static final String ADAPTED_TO_NEW_MULTIPLE_WAVE_OPTION = "pref_adapted_to_new_multiple_wave_option";
 
     public static final String SHOW_STARTED_SERVICE_TOAST = "pref_show_start_service_toast";
@@ -49,8 +49,12 @@ public class WakeUpSettings {
     private final Context context;
     private PreferenceActivity preferenceActivity = null;
 
+    private WakeUpSettings(Context context) {
+        this.context = context;
+    }
+
     public static WakeUpSettings getInstance(Context context) {
-        if (instance == null ) {
+        if (instance == null) {
             synchronized (WakeUpSettings.class) {
                 if (instance == null) {
                     instance = new WakeUpSettings(context);
@@ -61,10 +65,6 @@ public class WakeUpSettings {
         return instance;
     }
 
-    private WakeUpSettings(Context context) {
-        this.context = context;
-    }
-    
     public SharedPreferences getPreferences() {
         return PreferenceManager.getDefaultSharedPreferences(context);
     }

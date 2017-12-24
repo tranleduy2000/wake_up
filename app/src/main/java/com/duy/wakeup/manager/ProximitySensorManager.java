@@ -30,30 +30,32 @@ import java.util.Locale;
 
 public class ProximitySensorManager implements SensorEventListener {
     private static final String TAG = "ProximitySensorManager";
-
-    private final SensorManager sensorManager;
-    private final Sensor proximitySensor;
-
-    private enum Distance { NEAR, FAR }
-    private Distance lastDistance = Distance.FAR;
-    private long lastTime = 0;
     private static final long WAVE_THRESHOLD = 2000;
     private static final long POCKET_THRESHOLD = 5000;
     private static final long MIN_TIME_BETWEEN_SCREEN_ON_AND_OFF = 1500;
-
-    private final Context context;
-
     private static volatile ProximitySensorManager instance;
-    private final ScreenHandler screenHandler;
+    private final SensorManager sensorManager;
+    private final Sensor proximitySensor;
+    private final Context context;
+    private final WakeUpScreenHandler screenHandler;
     private final WakeUpSettings settings;
-
-    private boolean listening = false;
-
     int waveCount = 0;
     long lastWaveTime = 0;
+    private Distance lastDistance = Distance.FAR;
+    private long lastTime = 0;
+    private boolean listening = false;
+
+    private ProximitySensorManager(Context context) {
+        this.context = context;
+        this.screenHandler = WakeUpScreenHandler.getInstance(context);
+        this.sensorManager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
+        this.proximitySensor = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
+        this.settings = WakeUpSettings.getInstance(context);
+        start();
+    }
 
     public static ProximitySensorManager getInstance(Context context) {
-        if (instance == null ) {
+        if (instance == null) {
             synchronized (ProximitySensorManager.class) {
                 if (instance == null) {
                     instance = new ProximitySensorManager(context);
@@ -62,15 +64,6 @@ public class ProximitySensorManager implements SensorEventListener {
         }
 
         return instance;
-    }
-
-    private ProximitySensorManager(Context context) {
-        this.context = context;
-        this.screenHandler = ScreenHandler.getInstance(context);
-        this.sensorManager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
-        this.proximitySensor = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
-        this.settings = WakeUpSettings.getInstance(context);
-        start();
     }
 
     private void start() {
@@ -87,15 +80,15 @@ public class ProximitySensorManager implements SensorEventListener {
         WaveUpWorldState waveUpWorldState = new WaveUpWorldState(context);
         boolean startAllowedByWaveOrLockModes =
                 (!waveUpWorldState.isScreenOn() && (settings.isPocketMode() || settings.isWaveMode())) ||
-                (waveUpWorldState.isScreenOn() && settings.isLockScreen() && settings.isLockScreenAdmin());
+                        (waveUpWorldState.isScreenOn() && settings.isLockScreen() && settings.isLockScreenAdmin());
         boolean startAllowedByOrientation = settings.isLockScreenWhenLandscape() || waveUpWorldState.isPortrait()
                 || !waveUpWorldState.isScreenOn();
         boolean startAllowedByNoOngoingCall = !waveUpWorldState.isOngoingCall();
 
         Log.v(TAG, String.format(
                 "start because of wave or lock modes: %s\n" +
-                "start because of orientation: %s\n" +
-                "start because of no ongoing call: %s" ,
+                        "start because of orientation: %s\n" +
+                        "start because of no ongoing call: %s",
                 startAllowedByWaveOrLockModes,
                 startAllowedByOrientation,
                 startAllowedByNoOngoingCall));
@@ -112,7 +105,7 @@ public class ProximitySensorManager implements SensorEventListener {
     }
 
     public final void stop() {
-        ScreenHandler.getInstance(context).cancelTurnOff();
+        WakeUpScreenHandler.getInstance(context).cancelTurnOff();
         if (listening) {
             Log.d(TAG, "Unregistering proximity sensor listener");
             sensorManager.unregisterListener(this);
@@ -178,8 +171,10 @@ public class ProximitySensorManager implements SensorEventListener {
         lastTime = currentTime;
     }
 
-
     @Override
     public final void onAccuracyChanged(Sensor sensor, int i) {
     }
+
+
+    private enum Distance {NEAR, FAR}
 }

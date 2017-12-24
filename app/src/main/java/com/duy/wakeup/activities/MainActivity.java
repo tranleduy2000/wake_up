@@ -49,9 +49,9 @@ import android.widget.Toast;
 
 import com.duy.wakeup.BuildConfig;
 import com.duy.wakeup.manager.ProximitySensorManager;
-import com.duy.wakeup.root.Root;
 import com.duy.wakeup.manager.WakeUpSettings;
 import com.duy.wakeup.receivers.LockScreenAdminReceiver;
+import com.duy.wakeup.root.Root;
 import com.duy.wakeup.services.WaveUpService;
 
 public class MainActivity extends AppCompatPreferenceActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
@@ -62,10 +62,8 @@ public class MainActivity extends AppCompatPreferenceActivity implements SharedP
     private static final int READ_PHONE_STATE_PERMISSION_REQUEST_CODE = 300;
     private static final int UNINSTALL_CANCELED_MSG_SHOW_TIME = 5000;
     private static final int UNINSTALL_CANCELED_MSG_SHOW_INTERVAL = 1000;
-
-    private static boolean removeAdminRights = false;
-
     private static final String[] READ_PHONE_STATE_PERMISSION = {"android.permission.READ_PHONE_STATE"};
+    private static boolean removeAdminRights = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -125,6 +123,7 @@ public class MainActivity extends AppCompatPreferenceActivity implements SharedP
             getSettings().setAdaptedToNewMultipleWaveOption(true);
         }
     }
+
     private WakeUpSettings getSettings() {
         return WakeUpSettings.getInstance(getApplicationContext());
     }
@@ -211,7 +210,7 @@ public class MainActivity extends AppCompatPreferenceActivity implements SharedP
             case WakeUpSettings.SENSOR_COVER_TIME_BEFORE_LOCKING_SCREEN:
                 Preference preference = findPreference(key);
                 ListPreference listPreference = (ListPreference) preference;
-                preference.setSummary(String.format(getResources().getString(com.duy.wakeup.R.string.pref_sensor_cover_time_before_locking_screen_summary),listPreference.getEntry()));
+                preference.setSummary(String.format(getResources().getString(com.duy.wakeup.R.string.pref_sensor_cover_time_before_locking_screen_summary), listPreference.getEntry()));
                 break;
             case WakeUpSettings.NUMBER_OF_WAVES:
                 Preference numberOfWavesPreference = findPreference(key);
@@ -250,7 +249,7 @@ public class MainActivity extends AppCompatPreferenceActivity implements SharedP
         DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                switch (which){
+                switch (which) {
                     case DialogInterface.BUTTON_POSITIVE:
                         requestLockScreenAdminRights();
                         break;
@@ -300,7 +299,7 @@ public class MainActivity extends AppCompatPreferenceActivity implements SharedP
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode){
+        switch (requestCode) {
             case ADD_DEVICE_ADMIN_REQUEST_CODE:
                 if (!getSettings().isLockScreenAdmin()) {
                     // If the user does not activate lock admin switch off lock screen option
@@ -315,8 +314,13 @@ public class MainActivity extends AppCompatPreferenceActivity implements SharedP
                     canceledMsg.show();
                     /* Show message UNINSTALL_CANCELED_MSG_SHOW_TIME second */
                     new CountDownTimer(UNINSTALL_CANCELED_MSG_SHOW_TIME, UNINSTALL_CANCELED_MSG_SHOW_INTERVAL) {
-                        public void onTick(long millisUntilFinished) { canceledMsg.show(); }
-                        public void onFinish() { canceledMsg.cancel(); }
+                        public void onTick(long millisUntilFinished) {
+                            canceledMsg.show();
+                        }
+
+                        public void onFinish() {
+                            canceledMsg.cancel();
+                        }
                     }.start();
                     removeAdminRights = false;
                 }

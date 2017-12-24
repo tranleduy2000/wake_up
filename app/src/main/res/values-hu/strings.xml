@@ -50,4 +50,4 @@
     <string name="alert_dialog_message"><b>Eltávolítás:</b> ha szeretnéd a  WaveUp eltávolítását, ezt megteheted az alkalmazáson belül (ehhez van egy gomb alul).\n\n<b>(Állítólagos) akku szivárgás:</b> saját Android verziódtól függően, az eszköz esetleg tévesen jelentheti a magas akkuhasználatot.\n\nJó szórakozást kíván a WaveUp! :)</string>
     <string name="alert_dialog_ok_button">OKÉ</string>
 
-    </resources>
+</resources>

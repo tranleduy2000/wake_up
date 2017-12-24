@@ -30,7 +30,7 @@ public class WaveUpWorldState {
     private static final String TAG = "WaveUpWorldState";
     private final Context context;
 
-    public WaveUpWorldState (Context context) {
+    public WaveUpWorldState(Context context) {
         this.context = context;
     }
 

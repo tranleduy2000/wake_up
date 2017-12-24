@@ -27,40 +27,22 @@ import android.util.Log;
 
 import com.duy.wakeup.root.Root;
 
-public class ScreenHandler {
+public class WakeUpScreenHandler {
     private static final String TAG = "ScreenHandler";
 
     private static final long TIME_SCREEN_ON = 5000;
-
+    private static volatile WakeUpScreenHandler instance;
     private final PowerManager powerManager;
     private final PowerManager.WakeLock wakeLock;
     private final DevicePolicyManager policyManager;
     private final WaveUpWorldState waveUpWorldState;
-
     private final WakeUpSettings settings;
-
-    private long lastTimeScreenOnOrOff;
-
     private final Context context;
-
-    private static volatile ScreenHandler instance;
-
+    private long lastTimeScreenOnOrOff;
     private Thread turnOffScreenThread;
     private boolean turningOffScreen;
 
-    public static ScreenHandler getInstance(Context context) {
-        if (instance == null ) {
-            synchronized (ScreenHandler.class) {
-                if (instance == null) {
-                    instance = new ScreenHandler(context);
-                }
-            }
-        }
-
-        return instance;
-    }
-
-    private ScreenHandler(Context context) {
+    private WakeUpScreenHandler(Context context) {
         this.context = context;
         this.powerManager = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
         this.wakeLock = powerManager.newWakeLock(PowerManager.ACQUIRE_CAUSES_WAKEUP | PowerManager.SCREEN_BRIGHT_WAKE_LOCK, "WakeUpWakeLock");
@@ -69,12 +51,24 @@ public class ScreenHandler {
         this.waveUpWorldState = new WaveUpWorldState(context);
     }
 
+    public static WakeUpScreenHandler getInstance(Context context) {
+        if (instance == null) {
+            synchronized (WakeUpScreenHandler.class) {
+                if (instance == null) {
+                    instance = new WakeUpScreenHandler(context);
+                }
+            }
+        }
+
+        return instance;
+    }
+
     private Thread turnOffScreenThread(final long delay) {
         return new Thread() {
             @Override
             public void run() {
                 if (waveUpWorldState.isScreenOn()) {
-                    Log.d(TAG, "Creating a thread to turn off display if still covered in " + delay/1000 + " seconds");
+                    Log.d(TAG, "Creating a thread to turn off display if still covered in " + delay / 1000 + " seconds");
                     try {
                         Thread.sleep(delay);
                         doTurnOffScreen();
@@ -92,12 +86,12 @@ public class ScreenHandler {
         if (settings.isVibrateWhileLocking()) {
             vibrate();
         }
-        Log.i( TAG, "Switched from 'far' to 'near'.");
+        Log.i(TAG, "Switched from 'far' to 'near'.");
         if (settings.isLockScreenWithPowerButton()) {
-            Log.i( TAG, "Turning screen off simulating power button press.");
+            Log.i(TAG, "Turning screen off simulating power button press.");
             Root.pressPowerButton();
         } else {
-            Log.i( TAG, "Turning screen off.");
+            Log.i(TAG, "Turning screen off.");
             try {
                 policyManager.lockNow();
             } catch (IllegalStateException e) {
@@ -134,7 +128,7 @@ public class ScreenHandler {
     public void turnOnScreen() {
         if (!waveUpWorldState.isScreenOn()) {
             lastTimeScreenOnOrOff = System.currentTimeMillis();
-            Log.i( TAG, "Switched from 'near' to 'far'. Turning screen on");
+            Log.i(TAG, "Switched from 'near' to 'far'. Turning screen on");
             if (wakeLock.isHeld()) {
                 wakeLock.release();
             }
