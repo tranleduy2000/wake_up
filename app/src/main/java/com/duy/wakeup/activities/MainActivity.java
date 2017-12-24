@@ -1,7 +1,6 @@
 package com.duy.wakeup.activities;
 
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+
 import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
 import android.content.Context;
@@ -10,10 +9,14 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.Toolbar;
 import android.text.method.LinkMovementMethod;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,7 +31,7 @@ import com.duy.wakeup.settings.SettingsFragment;
  * Created by Duy on 24-Dec-17.
  */
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements View.OnClickListener {
     private static final String TAG = "MainActivity";
     private static final int UNINSTALL_REQUEST_CODE = 200;
     private static final int UNINSTALL_CANCELED_MSG_SHOW_TIME = 5000;
@@ -39,12 +42,19 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
 
-        FragmentManager fragmentManager = getFragmentManager();
+//        FragmentManager fragmentManager = getFragmentManager();
+//        FragmentTransaction transaction = fragmentManager.beginTransaction();
+//        transaction.replace(R.id.content, SettingsFragment.newInstance()).commitAllowingStateLoss();
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.content, SettingsFragment.newInstance()).commitAllowingStateLoss();
 
+
         showInitialDialog();
+        findViewById(R.id.fab).setOnClickListener(this);
     }
 
     private void showInitialDialog() {
@@ -157,5 +167,12 @@ public class MainActivity extends BaseActivity {
 
     private WakeUpSettings getSettings() {
         return WakeUpSettings.getInstance(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.fab) {
+            uninstallApp();
+        }
     }
 }

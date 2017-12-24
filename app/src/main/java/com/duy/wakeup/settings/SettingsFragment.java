@@ -28,13 +28,15 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.preference.ListPreference;
-import android.preference.Preference;
-import android.preference.PreferenceFragment;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.preference.ListPreference;
+import android.support.v7.preference.Preference;
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.Toast;
 
 import com.duy.common.utils.DLog;
@@ -44,8 +46,9 @@ import com.duy.wakeup.manager.WakeUpSettings;
 import com.duy.wakeup.receivers.LockScreenAdminReceiver;
 import com.duy.wakeup.root.Root;
 import com.duy.wakeup.services.WaveUpService;
+import com.takisoft.fix.support.v7.preference.PreferenceFragmentCompatDividers;
 
-public class SettingsFragment extends PreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener {
+public class SettingsFragment extends PreferenceFragmentCompatDividers implements SharedPreferences.OnSharedPreferenceChangeListener {
     private static final String TAG = "MainActivity";
     private static final int ADD_DEVICE_ADMIN_REQUEST_CODE = 1;
     private static final int READ_PHONE_STATE_PERMISSION_REQUEST_CODE = 300;
@@ -64,6 +67,10 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public void onCreatePreferencesFix(@Nullable Bundle savedInstanceState, String rootKey) {
         adaptToNewMultipleWaveOption();
         createLayout();
         startService();
@@ -90,9 +97,16 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
 
     private void createLayout() {
         addPreferencesFromResource(R.xml.preferences_settings);
-        onSharedPreferenceChanged(getSettings().getPreferences(), WakeUpSettings.KEY_SENSOR_COVER_TIME_BEFORE_LOCKING_SCREEN); // Work-around to set the summary of the option every time the Main Activity is shown
+        onSharedPreferenceChanged(getSettings().getPreferences(),
+                WakeUpSettings.KEY_SENSOR_COVER_TIME_BEFORE_LOCKING_SCREEN); // Work-around to set the summary of the option every time the Main Activity is shown
     }
 
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        RecyclerView listView = getListView();
+        ViewCompat.setNestedScrollingEnabled(listView, false);
+    }
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {

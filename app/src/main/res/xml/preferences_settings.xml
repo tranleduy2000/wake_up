@@ -3,7 +3,7 @@
     <PreferenceCategory
         android:key="@string/prefs_service"
         android:title="@string/prefs_service">
-        <CheckBoxPreference
+        <SwitchPreference
             android:defaultValue="false"
             android:key="pref_enable"
             android:title="@string/pref_enable" />
