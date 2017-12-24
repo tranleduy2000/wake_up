@@ -1,4 +1,4 @@
-package com.jarsilio.android.waveup;
+package com.duy.wakeup;
 
 import android.content.res.Configuration;
 import android.os.Bundle;

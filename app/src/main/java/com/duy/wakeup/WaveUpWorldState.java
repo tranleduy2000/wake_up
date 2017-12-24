@@ -17,14 +17,14 @@
  * along with WaveUp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.jarsilio.android.waveup;
+package com.duy.wakeup;
 
 import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.PowerManager;
 
-import com.jarsilio.android.waveup.receivers.CallStateReceiver;
+import com.duy.wakeup.receivers.CallStateReceiver;
 
 public class WaveUpWorldState {
     private static final String TAG = "WaveUpWorldState";

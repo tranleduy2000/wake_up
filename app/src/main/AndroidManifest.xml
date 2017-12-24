@@ -18,7 +18,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name="com.duy.wakeup.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -27,12 +27,12 @@
 
 
         <service
-            android:name=".WaveUpService"
+            android:name="com.duy.wakeup.services.WaveUpService"
             android:enabled="true"
             android:exported="false" />
 
         <receiver
-            android:name=".receivers.AutoStart"
+            android:name="com.duy.wakeup.receivers.BootCompleteReceiver"
             android:enabled="true"
             android:exported="false">
             <intent-filter>
@@ -44,7 +44,7 @@
             </intent-filter>
         </receiver>
         <receiver
-            android:name=".receivers.NewMultipleWaveOptionAdapter"
+            android:name="com.duy.wakeup.receivers.NewMultipleWaveOptionAdapter"
             android:enabled="true"
             android:exported="false">
             <intent-filter>
@@ -53,7 +53,7 @@
             </intent-filter>
         </receiver>
         <receiver
-            android:name=".receivers.LockScreenAdminReceiver"
+            android:name="com.duy.wakeup.receivers.LockScreenAdminReceiver"
             android:permission="android.permission.BIND_DEVICE_ADMIN">
             <meta-data
                 android:name="android.app.device_admin"
@@ -64,7 +64,7 @@
             </intent-filter>
         </receiver>
 
-        <receiver android:name=".receivers.CallStateReceiver" >
+        <receiver android:name="com.duy.wakeup.receivers.CallStateReceiver" >
             <intent-filter>
                 <action android:name="android.intent.action.PHONE_STATE" />
             </intent-filter>

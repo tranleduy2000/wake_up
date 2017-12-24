@@ -17,7 +17,7 @@
  * along with WaveUp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.jarsilio.android.waveup;
+package com.duy.wakeup;
 
 import android.content.Context;
 import android.hardware.Sensor;

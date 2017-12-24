@@ -17,7 +17,7 @@
  * along with WaveUp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.jarsilio.android.waveup.receivers;
+package com.duy.wakeup.receivers;
 
 import android.app.admin.DeviceAdminReceiver;
 import android.content.Context;
@@ -26,7 +26,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.jarsilio.android.waveup.R;
-import com.jarsilio.android.waveup.Settings;
+import com.duy.wakeup.Settings;
 
 public class LockScreenAdminReceiver extends DeviceAdminReceiver {
     private static final String TAG = "LockScreenAdminReceiver";

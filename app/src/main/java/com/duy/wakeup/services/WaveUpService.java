@@ -17,15 +17,16 @@
  * along with WaveUp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.jarsilio.android.waveup;
+package com.duy.wakeup.services;
 
 import android.app.Service;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.IBinder;
 
-import com.jarsilio.android.waveup.receivers.OrientationReceiver;
-import com.jarsilio.android.waveup.receivers.ScreenReceiver;
+import com.duy.wakeup.ProximitySensorManager;
+import com.duy.wakeup.receivers.OrientationReceiver;
+import com.duy.wakeup.receivers.ScreenReceiver;
 
 public class WaveUpService extends Service {
     private static final String TAG = "WakeUpService";

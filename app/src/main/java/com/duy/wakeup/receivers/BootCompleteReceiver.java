@@ -17,31 +17,37 @@
  * along with WaveUp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.jarsilio.android.waveup.receivers;
+package com.duy.wakeup.receivers;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 
-import com.jarsilio.android.waveup.Settings;
-import com.jarsilio.android.waveup.WaveUpService;
+import com.duy.wakeup.Settings;
+import com.duy.wakeup.services.WaveUpService;
 
-public class AutoStart extends BroadcastReceiver {
-    private static final String TAG = "AutoStart";
+public class BootCompleteReceiver extends BroadcastReceiver {
+    private static final String TAG = "BootCompleteReceiver";
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        if (Settings.getInstance(context).isServiceEnabled()) {
-            if (intent.getAction().equals(Intent.ACTION_BOOT_COMPLETED)) {
-                Log.d(TAG, "Received ACTION_BOOT_COMPLETED.");
-                startWaveUpService(context);
-            } else if (intent.getAction().equals(Intent.ACTION_PACKAGE_REPLACED)) {
-                Log.d(TAG, "Received ACTION_PACKAGE_REPLACED.");
-                String upgradedPackage = intent.getData().getSchemeSpecificPart().replace("package:", "");
-                if (context.getPackageName().equals(upgradedPackage)) {
-                    Log.d(TAG, "The upgraded app was WaveUp.");
+        if (intent != null && intent.getAction() != null) {
+            if (Settings.getInstance(context).isServiceEnabled()) {
+                if (intent.getAction().equals(Intent.ACTION_BOOT_COMPLETED)) {
+                    Log.d(TAG, "Received ACTION_BOOT_COMPLETED.");
                     startWaveUpService(context);
+                } else if (intent.getAction().equals(Intent.ACTION_PACKAGE_REPLACED)) {
+                    Log.d(TAG, "Received ACTION_PACKAGE_REPLACED.");
+                    Uri data = intent.getData();
+                    if (data != null) {
+                        String upgradedPackage = data.getSchemeSpecificPart().replace("package:", "");
+                        if (context.getPackageName().equals(upgradedPackage)) {
+                            Log.d(TAG, "The upgraded app was WaveUp.");
+                            startWaveUpService(context);
+                        }
+                    }
                 }
             }
         }

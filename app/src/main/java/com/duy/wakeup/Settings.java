@@ -17,7 +17,7 @@
  * along with WaveUp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.jarsilio.android.waveup;
+package com.duy.wakeup;
 
 import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
@@ -27,7 +27,7 @@ import android.preference.CheckBoxPreference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 
-import com.jarsilio.android.waveup.receivers.LockScreenAdminReceiver;
+import com.duy.wakeup.receivers.LockScreenAdminReceiver;
 
 
 public class Settings {

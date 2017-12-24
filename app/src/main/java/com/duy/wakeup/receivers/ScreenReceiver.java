@@ -17,25 +17,27 @@
  * along with WaveUp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.jarsilio.android.waveup.receivers;
+package com.duy.wakeup.receivers;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
-import com.jarsilio.android.waveup.ProximitySensorManager;
+import com.duy.wakeup.ProximitySensorManager;
 
 public class ScreenReceiver extends BroadcastReceiver {
     private static final String TAG = "ScreenReceiver";
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        if (intent.getAction().equals(Intent.ACTION_SCREEN_OFF)) { // I am leaving this if just for the logging
-            Log.d(TAG, "Screen off");
-        } else if (intent.getAction().equals(Intent.ACTION_SCREEN_ON)) {
-            Log.d(TAG, "Screen on");
+        if (intent != null && intent.getAction() != null) {
+            if (intent.getAction().equals(Intent.ACTION_SCREEN_OFF)) { // I am leaving this if just for the logging
+                Log.d(TAG, "Screen off");
+            } else if (intent.getAction().equals(Intent.ACTION_SCREEN_ON)) {
+                Log.d(TAG, "Screen on");
+            }
+            ProximitySensorManager.getInstance(context).startOrStopListeningDependingOnConditions();
         }
-        ProximitySensorManager.getInstance(context).startOrStopListeningDependingOnConditions();
     }
 }

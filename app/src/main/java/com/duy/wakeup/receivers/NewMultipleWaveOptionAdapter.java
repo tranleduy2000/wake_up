@@ -17,14 +17,14 @@
  * along with WaveUp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.jarsilio.android.waveup.receivers;
+package com.duy.wakeup.receivers;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
-import com.jarsilio.android.waveup.Settings;
+import com.duy.wakeup.Settings;
 
 public class NewMultipleWaveOptionAdapter extends BroadcastReceiver {
     private static final String TAG = "NewMultipleWaveOption";

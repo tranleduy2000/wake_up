@@ -17,7 +17,7 @@
  * along with WaveUp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.jarsilio.android.waveup.receivers;
+package com.duy.wakeup.receivers;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -25,7 +25,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.util.Log;
 
-import com.jarsilio.android.waveup.ProximitySensorManager;
+import com.duy.wakeup.ProximitySensorManager;
 
 public class OrientationReceiver extends BroadcastReceiver {
     private static final String TAG = "OrientationReceiver";

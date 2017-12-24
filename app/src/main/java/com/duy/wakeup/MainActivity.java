@@ -17,7 +17,7 @@
  * along with WaveUp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.jarsilio.android.waveup;
+package com.duy.wakeup;
 
 import android.Manifest;
 import android.app.admin.DevicePolicyManager;
@@ -47,7 +47,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.jarsilio.android.waveup.receivers.LockScreenAdminReceiver;
+import com.jarsilio.android.waveup.BuildConfig;
+import com.jarsilio.android.waveup.R;
+import com.duy.wakeup.receivers.LockScreenAdminReceiver;
+import com.duy.wakeup.services.WaveUpService;
 
 public class MainActivity extends AppCompatPreferenceActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
     private static final String TAG = "MainActivity";
