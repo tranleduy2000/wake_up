@@ -50,7 +50,7 @@
 
     <!-- Initial alert dialog -->
     <string name="alert_dialog_title">Velkommen til WaveUp</string>
-    <string name="alert_dialog_message"><b>Afinstallation:</b> Hvis du ønsker at afinstallere WaveUp, kan du gøre det indefra appen (der er en knap for dette nederst). \n\n<b>(Påstået) batteri-tømning:</b> afhængigt af din Android-version, kan din enhed fejlagtigt rapportere en meget høj batteriforbrug. \n\nHav det sjovt med WaveUp! :)</string>
+    <string name="alert_dialog_message"><b>Afinstallation:</b> Hvis du ønsker at afinstallere WaveUp, kan du gøre det indefra appen. \n\n<b>(Påstået) batteri-tømning:</b> afhængigt af din Android-version, kan din enhed fejlagtigt rapportere en meget høj batteriforbrug. \n\nHav det sjovt med WaveUp! :)</string>
     <string name="alert_dialog_ok_button">O.k.</string>
 
     <!-- I put this array here instead of in arrays.xml because it has to be translated. -->

@@ -50,7 +50,7 @@
 
     <!-- Initial alert dialog -->
     <string name="alert_dialog_title">Bemvindo ao WaveUp!</string>
-    <string name="alert_dialog_message"><b>Desinstalação:</b> se você quiser desinstalar o WaveUp!, pode fazê-lo diretamente no aplicativo (há um botão no final).\n\n<b>(Alegado) consumo de bateria:</b> dependendo da sua versão do Android, seu aparelho poderá reportar erradamente um consumo de bateria elevado.\n\n Curta o WaveUp! :)</string>
+    <string name="alert_dialog_message"><b>Desinstalação:</b> se você quiser desinstalar o WaveUp!, pode fazê-lo diretamente no aplicativo.\n\n<b>(Alegado) consumo de bateria:</b> dependendo da sua versão do Android, seu aparelho poderá reportar erradamente um consumo de bateria elevado.\n\n Curta o WaveUp! :)</string>
     <string name="alert_dialog_ok_button">OK</string>
 
     <!-- I put this array here instead of in arrays.xml because it has to be translated. -->

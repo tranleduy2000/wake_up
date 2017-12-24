@@ -27,4 +27,5 @@
     <string name="pref_wave_mode">Chế độ vẫy tay</string>
     <string name="pref_number_of_waves">Số lần vẫy tay trước cảm biến</string>
     <string name="pref_number_of_waves_summary">Số lần bạn phải vẫy tay qua cảm biến khoảng cách để bật màn hình thiết bị của bạn.\n\nGiá trị hiện tại %s.</string>
+    <string name = "alert_dialog_message"> <b>Gỡ cài đặt: </b> nếu bạn muốn gỡ cài đặt WaveUp, chỉ cần thực hiện việc này từ bên trong ứng dụng.\n\n <b> Vấn đề pin: </b> trên phiên bản Android của bạn, thiết bị của bạn có thể báo cáo sai về mức sử dụng pin của WakeUp.\n\n Nhớ đánh giá 5sao nếu thấy ứng dụng hữu ích</string>
 </resources>

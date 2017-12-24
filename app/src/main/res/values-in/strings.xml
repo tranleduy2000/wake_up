@@ -50,7 +50,7 @@
 
     <!-- Initial alert dialog -->
     <string name="alert_dialog_title">Selamat datang dalam aplikasi WaveUp!</string>
-    <string name="alert_dialog_message"><b>Menghapus aplikasi: </b> jika Anda berkehendak untuk menghapus aplikasi WaveUp, lakukan dari dalam aplikasi ini saja (terdapat tombol untuk melakukan hal tersebut pada bagian bawah aplikasi).\n\n <b>(Dugaan) terkurasnya daya baterai;</b>bergantung pada versi Android dalam perangkat, perangkat Anda dapat melaporkan penggunaan daya baterai dengan tidak benar.\n\n Selamat bersenang-senang dengan WaveUp! :)</string>
+    <string name="alert_dialog_message"><b>Menghapus aplikasi: </b> jika Anda berkehendak untuk menghapus aplikasi WaveUp, lakukan dari dalam aplikasi ini saja.\n\n <b>(Dugaan) terkurasnya daya baterai;</b>bergantung pada versi Android dalam perangkat, perangkat Anda dapat melaporkan penggunaan daya baterai dengan tidak benar.\n\n Selamat bersenang-senang dengan WaveUp! :)</string>
     <string name="alert_dialog_ok_button">BAIK</string>
 
     <!-- I put this array here instead of in arrays.xml because it has to be translated. -->

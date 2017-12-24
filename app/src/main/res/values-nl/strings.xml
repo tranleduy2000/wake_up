@@ -52,7 +52,7 @@
 
     <!-- Initial alert dialog -->
     <string name="alert_dialog_title">Welkom bij WaveUp!</string>
-    <string name="alert_dialog_message"><b>Verwijderen:</b> Om WaveUp goed te kunnen verwijderen is het belangrijk dat hiervoor de verwijder-knop binnen de app wordt gebruikt (onderaan de app)!\n\n<b>(Zogenaamd hoog) accu verbruik:</b> sommige Android versies kunnen een hoog accu verbruik rapporteren, dit is niet correct.\n\nVeel plezier met WaveUp! :)</string>
+    <string name="alert_dialog_message"><b>Verwijderen:</b> Om WaveUp goed te kunnen verwijderen is het belangrijk dat hiervoor de verwijder-knop binnen de app wordt gebruikt\n\n<b>(Zogenaamd hoog) accu verbruik:</b> sommige Android versies kunnen een hoog accu verbruik rapporteren, dit is niet correct.\n\nVeel plezier met WaveUp! :)</string>
     <string name="alert_dialog_ok_button">OK</string>
 
     <!-- I put this array here instead of in arrays.xml because it has to be translated. -->

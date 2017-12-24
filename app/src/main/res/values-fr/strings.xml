@@ -47,6 +47,6 @@
 
     <!-- Initial alert dialog -->
     <string name="alert_dialog_title">Merci d\'utiliser WaveUp!</string>
-    <string name="alert_dialog_message"><b>Désinstallation:</b> si vous voulez désinstaller WaveUp, faîte-le à partir de l\'appli (il y a un bouton pour cela en bas de l\'écran).\n\n<b>(Possible) vidage de batterie:</b> selon la version d\'Android installée, votre téléphone pourrait à tort signaler un usage intensif de la batterie.\n\nAmusez-vous bien avec WaveUp! :)</string>
+    <string name="alert_dialog_message"><b>Désinstallation:</b> si vous voulez désinstaller WaveUp, faîte-le à partir de l\'appli.\n\n<b>(Possible) vidage de batterie:</b> selon la version d\'Android installée, votre téléphone pourrait à tort signaler un usage intensif de la batterie.\n\nAmusez-vous bien avec WaveUp! :)</string>
     <string name="alert_dialog_ok_button">OK</string>
 </resources>
