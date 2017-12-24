@@ -17,13 +17,15 @@
  * along with WaveUp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.duy.wakeup;
+package com.duy.wakeup.manager;
 
 import android.app.admin.DevicePolicyManager;
 import android.content.Context;
 import android.os.PowerManager;
 import android.os.Vibrator;
 import android.util.Log;
+
+import com.duy.wakeup.root.Root;
 
 public class ScreenHandler {
     private static final String TAG = "ScreenHandler";
@@ -35,7 +37,7 @@ public class ScreenHandler {
     private final DevicePolicyManager policyManager;
     private final WaveUpWorldState waveUpWorldState;
 
-    private final Settings settings;
+    private final WakeUpSettings settings;
 
     private long lastTimeScreenOnOrOff;
 
@@ -63,7 +65,7 @@ public class ScreenHandler {
         this.powerManager = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
         this.wakeLock = powerManager.newWakeLock(PowerManager.ACQUIRE_CAUSES_WAKEUP | PowerManager.SCREEN_BRIGHT_WAKE_LOCK, "WakeUpWakeLock");
         this.policyManager = (DevicePolicyManager) context.getSystemService(Context.DEVICE_POLICY_SERVICE);
-        this.settings = Settings.getInstance(context);
+        this.settings = WakeUpSettings.getInstance(context);
         this.waveUpWorldState = new WaveUpWorldState(context);
     }
 

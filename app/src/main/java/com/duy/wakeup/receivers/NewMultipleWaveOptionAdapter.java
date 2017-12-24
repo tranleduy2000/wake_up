@@ -24,20 +24,20 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
-import com.duy.wakeup.Settings;
+import com.duy.wakeup.manager.WakeUpSettings;
 
 public class NewMultipleWaveOptionAdapter extends BroadcastReceiver {
     private static final String TAG = "NewMultipleWaveOption";
 
-    private void setDefaultValueForDoubleWave(Context context, Settings settings) {
+    private void setDefaultValueForDoubleWave(Context context, WakeUpSettings settings) {
         Log.d(TAG, "Probably just replaced a pre-number-of-waves version of WaveUp. Adapting to new option accordingly: " +
                 "Setting NUMBER_OF_WAVES to 1 if 'wave mode' was on and to 2 if it wasn't...");
-        if (Settings.getInstance(context).isWaveMode()) {
+        if (WakeUpSettings.getInstance(context).isWaveMode()) {
             Log.d(TAG, "'Wave mode' is on. Setting NUMBER_OF_WAVES to 1 so that it works as before");
-            Settings.getInstance(context).setNumberOfWaves(1);
+            WakeUpSettings.getInstance(context).setNumberOfWaves(1);
         } else {
             Log.d(TAG, "'Wave mode' is off. Setting NUMBER_OF_WAVES to 2, the new standard to avoid accidental waving up");
-            Settings.getInstance(context).setNumberOfWaves(2);
+            WakeUpSettings.getInstance(context).setNumberOfWaves(2);
         }
     }
 
@@ -46,7 +46,7 @@ public class NewMultipleWaveOptionAdapter extends BroadcastReceiver {
         if (intent.getAction().equals(Intent.ACTION_PACKAGE_REPLACED)) {
             String upgradedPackage = intent.getData().getSchemeSpecificPart().replace("package:", "");
             if (context.getPackageName().equals(upgradedPackage)) {
-                Settings settings = Settings.getInstance(context);
+                WakeUpSettings settings = WakeUpSettings.getInstance(context);
 
                 if (!settings.isAdaptedToNewMultipleWaveOption()) {
                     setDefaultValueForDoubleWave(context, settings);

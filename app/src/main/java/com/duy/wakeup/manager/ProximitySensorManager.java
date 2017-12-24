@@ -17,7 +17,7 @@
  * along with WaveUp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.duy.wakeup;
+package com.duy.wakeup.manager;
 
 import android.content.Context;
 import android.hardware.Sensor;
@@ -45,7 +45,7 @@ public class ProximitySensorManager implements SensorEventListener {
 
     private static volatile ProximitySensorManager instance;
     private final ScreenHandler screenHandler;
-    private final Settings settings;
+    private final WakeUpSettings settings;
 
     private boolean listening = false;
 
@@ -69,7 +69,7 @@ public class ProximitySensorManager implements SensorEventListener {
         this.screenHandler = ScreenHandler.getInstance(context);
         this.sensorManager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
         this.proximitySensor = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
-        this.settings = Settings.getInstance(context);
+        this.settings = WakeUpSettings.getInstance(context);
         start();
     }
 

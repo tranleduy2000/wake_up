@@ -17,7 +17,7 @@
  * along with WaveUp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.duy.wakeup;
+package com.duy.wakeup.manager;
 
 import android.content.Context;
 import android.content.res.Configuration;

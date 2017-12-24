@@ -24,7 +24,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
-import com.duy.wakeup.ProximitySensorManager;
+import com.duy.wakeup.manager.ProximitySensorManager;
 
 public class ScreenReceiver extends BroadcastReceiver {
     private static final String TAG = "ScreenReceiver";

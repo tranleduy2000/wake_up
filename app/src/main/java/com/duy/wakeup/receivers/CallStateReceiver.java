@@ -26,7 +26,7 @@ import android.os.Bundle;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
-import com.duy.wakeup.ProximitySensorManager;
+import com.duy.wakeup.manager.ProximitySensorManager;
 
 public class CallStateReceiver extends BroadcastReceiver {
     private static final String TAG = "CallStateReceiver";

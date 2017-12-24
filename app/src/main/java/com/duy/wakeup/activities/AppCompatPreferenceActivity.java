@@ -1,4 +1,4 @@
-package com.duy.wakeup;
+package com.duy.wakeup.activities;
 
 import android.content.res.Configuration;
 import android.os.Bundle;

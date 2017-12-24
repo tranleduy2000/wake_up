@@ -24,7 +24,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.IBinder;
 
-import com.duy.wakeup.ProximitySensorManager;
+import com.duy.wakeup.manager.ProximitySensorManager;
 import com.duy.wakeup.receivers.OrientationReceiver;
 import com.duy.wakeup.receivers.ScreenReceiver;
 

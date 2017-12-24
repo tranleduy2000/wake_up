@@ -25,7 +25,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.util.Log;
 
-import com.duy.wakeup.ProximitySensorManager;
+import com.duy.wakeup.manager.ProximitySensorManager;
 
 public class OrientationReceiver extends BroadcastReceiver {
     private static final String TAG = "OrientationReceiver";

@@ -139,7 +139,7 @@ All notable changes to this project will be documented in this file. Format insp
  - Root permission option remains unchecked if root access not granted
 
 ### Removed
- - External SD Card permission. If log option is on, it will be written to Internal Storage/Android/data/com.jarsilio.android.waveup/files
+ - External SD Card permission. If log option is on, it will be written to Internal Storage/Android/data/com.duy.wakeup/files
 
 ## [0.99-2] 2016-05-23
 

@@ -76,11 +76,11 @@ Download it
 
 [<img src="https://gitlab.com/juanitobananas/wave-up/raw/master/f-droid/get-it-on.png"
       alt="Get it on F-Droid"
-      height="80">](https://f-droid.org/app/com.jarsilio.android.waveup)
+      height="80">](https://f-droid.org/app/com.duy.wakeup)
 
 [<img src="https://gitlab.com/juanitobananas/wave-up/raw/master/google-play-store/google-play-badge.png"
       alt="Get it on Google Play"
-      height="80">](https://play.google.com/store/apps/details?id=com.jarsilio.android.waveup)
+      height="80">](https://play.google.com/store/apps/details?id=com.duy.wakeup)
 
 Legal Attributions
 ------------------

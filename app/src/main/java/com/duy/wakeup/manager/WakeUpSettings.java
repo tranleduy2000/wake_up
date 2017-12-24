@@ -17,7 +17,7 @@
  * along with WaveUp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.duy.wakeup;
+package com.duy.wakeup.manager;
 
 import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
@@ -30,7 +30,7 @@ import android.preference.PreferenceManager;
 import com.duy.wakeup.receivers.LockScreenAdminReceiver;
 
 
-public class Settings {
+public class WakeUpSettings {
     public static final String ENABLED = "pref_enable";
     public static final String INITIAL_DIALOG_SHOWN = "pref_initial_dialog_shown";
     public static final String WAVE_MODE = "pref_wave_mode";
@@ -45,15 +45,15 @@ public class Settings {
 
     public static final String SHOW_STARTED_SERVICE_TOAST = "pref_show_start_service_toast";
 
-    private static volatile Settings instance;
+    private static volatile WakeUpSettings instance;
     private final Context context;
     private PreferenceActivity preferenceActivity = null;
 
-    public static Settings getInstance(Context context) {
+    public static WakeUpSettings getInstance(Context context) {
         if (instance == null ) {
-            synchronized (Settings.class) {
+            synchronized (WakeUpSettings.class) {
                 if (instance == null) {
-                    instance = new Settings(context);
+                    instance = new WakeUpSettings(context);
                 }
             }
         }
@@ -61,7 +61,7 @@ public class Settings {
         return instance;
     }
 
-    private Settings(Context context) {
+    private WakeUpSettings(Context context) {
         this.context = context;
     }
     
@@ -122,7 +122,7 @@ public class Settings {
             CheckBoxPreference checkBox = (CheckBoxPreference) preferenceActivity.findPreference(key);
             checkBox.setChecked(value);
         } else { // This doesn't change the GUI
-            getPreferences().edit().putBoolean(key, value).commit();
+            getPreferences().edit().putBoolean(key, value).apply();
         }
         /* onSharedPreferenceChanged is not called sometimes when status of a preference is changed manually.
          * Call startOrStop here to check if proximity sensor listener should be registered or not. */
@@ -130,11 +130,11 @@ public class Settings {
     }
 
     private void setPreference(String key, long value) {
-        getPreferences().edit().putLong(key, value).commit();
+        getPreferences().edit().putLong(key, value).apply();
     }
 
     private void setPreference(String key, String value) {
-        getPreferences().edit().putString(key, value).commit();
+        getPreferences().edit().putString(key, value).apply();
     }
 
     public boolean isLockScreenAdmin() {
@@ -147,7 +147,7 @@ public class Settings {
     }
 
     public void setInitialDialogShown(boolean initialDialogShown) {
-        getPreferences().edit().putBoolean(INITIAL_DIALOG_SHOWN, initialDialogShown).commit();
+        getPreferences().edit().putBoolean(INITIAL_DIALOG_SHOWN, initialDialogShown).apply();
     }
 
     public boolean isShowStartedServiceToast() {
@@ -155,7 +155,7 @@ public class Settings {
     }
 
     public void setShowStartedServiceToast(boolean showStartedServiceToast) {
-        getPreferences().edit().putBoolean(SHOW_STARTED_SERVICE_TOAST, showStartedServiceToast).commit();
+        getPreferences().edit().putBoolean(SHOW_STARTED_SERVICE_TOAST, showStartedServiceToast).apply();
     }
 
     public boolean isAdaptedToNewMultipleWaveOption() {
@@ -163,7 +163,7 @@ public class Settings {
     }
 
     public void setAdaptedToNewMultipleWaveOption(boolean adaptedToNewMultipleWaveOption) {
-        getPreferences().edit().putBoolean(ADAPTED_TO_NEW_MULTIPLE_WAVE_OPTION, adaptedToNewMultipleWaveOption).commit();
+        getPreferences().edit().putBoolean(ADAPTED_TO_NEW_MULTIPLE_WAVE_OPTION, adaptedToNewMultipleWaveOption).apply();
     }
 
     private DevicePolicyManager getPolicyManager() {
@@ -171,7 +171,7 @@ public class Settings {
     }
 
     public void setPreferenceActivity(PreferenceActivity preferenceActivity) {
-        /* If a Preference is updated using getPreferences().edit().putBoolean(key, value).commit(),
+        /* If a Preference is updated using getPreferences().edit().putBoolean(key, value).apply(),
          * the GUI doesn't update automatically.
          * If it is changed using a CheckBox, then it does work. In order to get a CheckBox object,
          * we need to have the preferenceActivity, which is the MainActivity so we set it the moment

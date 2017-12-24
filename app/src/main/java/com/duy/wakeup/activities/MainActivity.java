@@ -17,7 +17,7 @@
  * along with WaveUp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.duy.wakeup;
+package com.duy.wakeup.activities;
 
 import android.Manifest;
 import android.app.admin.DevicePolicyManager;
@@ -36,9 +36,9 @@ import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
-import android.support.v7.app.AlertDialog;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -47,8 +47,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.jarsilio.android.waveup.BuildConfig;
-import com.jarsilio.android.waveup.R;
+import com.duy.wakeup.BuildConfig;
+import com.duy.wakeup.manager.ProximitySensorManager;
+import com.duy.wakeup.root.Root;
+import com.duy.wakeup.manager.WakeUpSettings;
 import com.duy.wakeup.receivers.LockScreenAdminReceiver;
 import com.duy.wakeup.services.WaveUpService;
 
@@ -80,9 +82,9 @@ public class MainActivity extends AppCompatPreferenceActivity implements SharedP
     private void showInitialDialog() {
         if (!getSettings().isInitialDialogShown()) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle(R.string.alert_dialog_title);
-            builder.setMessage(R.string.alert_dialog_message);
-            builder.setPositiveButton(R.string.alert_dialog_ok_button, null);
+            builder.setTitle(com.duy.wakeup.R.string.alert_dialog_title);
+            builder.setMessage(com.duy.wakeup.R.string.alert_dialog_message);
+            builder.setPositiveButton(com.duy.wakeup.R.string.alert_dialog_ok_button, null);
             builder.show();
 
             getSettings().setInitialDialogShown(true);
@@ -91,12 +93,12 @@ public class MainActivity extends AppCompatPreferenceActivity implements SharedP
 
     private void showPrivacyPolicyDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(R.string.privacy_policy_dialog_title);
+        builder.setTitle(com.duy.wakeup.R.string.privacy_policy_dialog_title);
 
         if (BuildConfig.BUILD_TYPE.equals("releaseGoogle")) {
-            builder.setMessage(R.string.privacy_policy_google_play_store_dialog_text);
+            builder.setMessage(com.duy.wakeup.R.string.privacy_policy_google_play_store_dialog_text);
         } else {
-            builder.setMessage(R.string.privacy_policy_f_droid_dialog_text);
+            builder.setMessage(com.duy.wakeup.R.string.privacy_policy_f_droid_dialog_text);
         }
 
         builder.setPositiveButton(android.R.string.ok, null);
@@ -123,15 +125,15 @@ public class MainActivity extends AppCompatPreferenceActivity implements SharedP
             getSettings().setAdaptedToNewMultipleWaveOption(true);
         }
     }
-    private Settings getSettings() {
-        return Settings.getInstance(getApplicationContext());
+    private WakeUpSettings getSettings() {
+        return WakeUpSettings.getInstance(getApplicationContext());
     }
 
     private void createLayout() {
-        addPreferencesFromResource(R.xml.settings);
+        addPreferencesFromResource(com.duy.wakeup.R.xml.settings);
 
         Button uninstallButton = new Button(getApplicationContext());
-        uninstallButton.setText(R.string.uninstall_button);
+        uninstallButton.setText(com.duy.wakeup.R.string.uninstall_button);
         uninstallButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 uninstallApp();
@@ -140,13 +142,13 @@ public class MainActivity extends AppCompatPreferenceActivity implements SharedP
 
         ListView listView = getListView();
         listView.addFooterView(uninstallButton);
-        onSharedPreferenceChanged(getSettings().getPreferences(), Settings.SENSOR_COVER_TIME_BEFORE_LOCKING_SCREEN); // Work-around to set the summary of the option every time the Main Activity is shown
+        onSharedPreferenceChanged(getSettings().getPreferences(), WakeUpSettings.SENSOR_COVER_TIME_BEFORE_LOCKING_SCREEN); // Work-around to set the summary of the option every time the Main Activity is shown
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(com.duy.wakeup.R.menu.menu_main, menu);
         return true;
     }
 
@@ -158,10 +160,10 @@ public class MainActivity extends AppCompatPreferenceActivity implements SharedP
         int id = item.getItemId();
 
         switch (id) {
-            case R.id.privacy_policy_menu_item:
+            case com.duy.wakeup.R.id.privacy_policy_menu_item:
                 showPrivacyPolicyDialog();
                 break;
-            case R.id.revoke_device_admin_menu_item:
+            case com.duy.wakeup.R.id.revoke_device_admin_menu_item:
                 removeDeviceAdminPermission();
                 break;
         }
@@ -188,33 +190,33 @@ public class MainActivity extends AppCompatPreferenceActivity implements SharedP
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         ProximitySensorManager.getInstance(getApplicationContext()).startOrStopListeningDependingOnConditions();
         switch (key) {
-            case Settings.ENABLED:
+            case WakeUpSettings.ENABLED:
                 if (getSettings().isServiceEnabled()) {
                     requestReadPhoneStatePermission();
                 }
                 startService();
-            case Settings.LOCK_SCREEN:
+            case WakeUpSettings.LOCK_SCREEN:
                 if (getSettings().isLockScreen() && !getSettings().isLockScreenAdmin()) {
                     openRequestAdminRightsYesNoDialog();
                 }
                 break;
-            case Settings.LOCK_SCREEN_WITH_POWER_BUTTON:
+            case WakeUpSettings.LOCK_SCREEN_WITH_POWER_BUTTON:
                 if (getSettings().isLockScreenWithPowerButton()) {
                     if (!Root.requestSuPermission()) {
                         getSettings().setLockScreenWithPowerButton(false);
-                        Toast.makeText(this, R.string.root_access_failed, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, com.duy.wakeup.R.string.root_access_failed, Toast.LENGTH_SHORT).show();
                     }
                 }
                 break;
-            case Settings.SENSOR_COVER_TIME_BEFORE_LOCKING_SCREEN:
+            case WakeUpSettings.SENSOR_COVER_TIME_BEFORE_LOCKING_SCREEN:
                 Preference preference = findPreference(key);
                 ListPreference listPreference = (ListPreference) preference;
-                preference.setSummary(String.format(getResources().getString(R.string.pref_sensor_cover_time_before_locking_screen_summary),listPreference.getEntry()));
+                preference.setSummary(String.format(getResources().getString(com.duy.wakeup.R.string.pref_sensor_cover_time_before_locking_screen_summary),listPreference.getEntry()));
                 break;
-            case Settings.NUMBER_OF_WAVES:
+            case WakeUpSettings.NUMBER_OF_WAVES:
                 Preference numberOfWavesPreference = findPreference(key);
                 ListPreference numberOfWavesListPreference = (ListPreference) numberOfWavesPreference;
-                numberOfWavesPreference.setSummary(String.format(getResources().getString(R.string.pref_number_of_waves_summary), numberOfWavesListPreference.getEntry()));
+                numberOfWavesPreference.setSummary(String.format(getResources().getString(com.duy.wakeup.R.string.pref_number_of_waves_summary), numberOfWavesListPreference.getEntry()));
                 break;
         }
     }
@@ -224,14 +226,14 @@ public class MainActivity extends AppCompatPreferenceActivity implements SharedP
             Log.i(TAG, "Starting WaveUpService");
             startService(new Intent(this, WaveUpService.class));
             if (getSettings().isShowStartedServiceToast()) {
-                Toast.makeText(this, R.string.wave_up_service_started, Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, com.duy.wakeup.R.string.wave_up_service_started, Toast.LENGTH_SHORT).show();
                 getSettings().setShowStartedServiceToast(false);
             }
         } else {
             Log.i(TAG, "Stopping WaveUpService");
             stopService(new Intent(this, WaveUpService.class));
             if (!getSettings().isShowStartedServiceToast()) {
-                Toast.makeText(this, R.string.wave_up_service_stopped, Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, com.duy.wakeup.R.string.wave_up_service_stopped, Toast.LENGTH_SHORT).show();
                 getSettings().setShowStartedServiceToast(true);
             }
         }
@@ -261,7 +263,7 @@ public class MainActivity extends AppCompatPreferenceActivity implements SharedP
         };
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage(R.string.lock_admin_rights_explanation).setPositiveButton(android.R.string.yes, dialogClickListener)
+        builder.setMessage(com.duy.wakeup.R.string.lock_admin_rights_explanation).setPositiveButton(android.R.string.yes, dialogClickListener)
                 .setNegativeButton(android.R.string.no, dialogClickListener).show();
     }
 
@@ -269,7 +271,7 @@ public class MainActivity extends AppCompatPreferenceActivity implements SharedP
         ComponentName lockScreenAdminComponentName = new ComponentName(getApplicationContext(), LockScreenAdminReceiver.class);
         Intent intent = new Intent(DevicePolicyManager.ACTION_ADD_DEVICE_ADMIN);
         intent.putExtra(DevicePolicyManager.EXTRA_DEVICE_ADMIN, lockScreenAdminComponentName);
-        intent.putExtra(DevicePolicyManager.EXTRA_ADD_EXPLANATION, R.string.lock_admin_rights_explanation);
+        intent.putExtra(DevicePolicyManager.EXTRA_ADD_EXPLANATION, com.duy.wakeup.R.string.lock_admin_rights_explanation);
         startActivityForResult(intent, ADD_DEVICE_ADMIN_REQUEST_CODE);
     }
 
@@ -290,7 +292,7 @@ public class MainActivity extends AppCompatPreferenceActivity implements SharedP
         }
 
         Log.i(TAG, "Uninstalling app");
-        Uri packageURI = Uri.parse("package:" + "com.jarsilio.android.waveup");
+        Uri packageURI = Uri.parse("package:" + "com.duy.wakeup");
         Intent uninstallIntent = new Intent(Intent.ACTION_DELETE, packageURI);
         startActivityForResult(uninstallIntent, UNINSTALL_REQUEST_CODE);
     }
@@ -309,7 +311,7 @@ public class MainActivity extends AppCompatPreferenceActivity implements SharedP
                 break;
             case UNINSTALL_REQUEST_CODE:
                 if (resultCode == RESULT_CANCELED && removeAdminRights) {
-                    final Toast canceledMsg = Toast.makeText(this, R.string.removed_device_admin_rights, Toast.LENGTH_SHORT);
+                    final Toast canceledMsg = Toast.makeText(this, com.duy.wakeup.R.string.removed_device_admin_rights, Toast.LENGTH_SHORT);
                     canceledMsg.show();
                     /* Show message UNINSTALL_CANCELED_MSG_SHOW_TIME second */
                     new CountDownTimer(UNINSTALL_CANCELED_MSG_SHOW_TIME, UNINSTALL_CANCELED_MSG_SHOW_INTERVAL) {

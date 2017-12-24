@@ -25,7 +25,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
 
-import com.duy.wakeup.Settings;
+import com.duy.wakeup.manager.WakeUpSettings;
 import com.duy.wakeup.services.WaveUpService;
 
 public class BootCompleteReceiver extends BroadcastReceiver {
@@ -34,7 +34,7 @@ public class BootCompleteReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         if (intent != null && intent.getAction() != null) {
-            if (Settings.getInstance(context).isServiceEnabled()) {
+            if (WakeUpSettings.getInstance(context).isServiceEnabled()) {
                 if (intent.getAction().equals(Intent.ACTION_BOOT_COMPLETED)) {
                     Log.d(TAG, "Received ACTION_BOOT_COMPLETED.");
                     startWaveUpService(context);
