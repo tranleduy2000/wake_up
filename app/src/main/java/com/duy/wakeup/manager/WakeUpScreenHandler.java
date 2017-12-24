@@ -31,43 +31,46 @@ public class WakeUpScreenHandler {
     private static final String TAG = "ScreenHandler";
 
     private static final long TIME_SCREEN_ON = 5000;
-    private static volatile WakeUpScreenHandler instance;
-    private final PowerManager powerManager;
-    private final PowerManager.WakeLock wakeLock;
-    private final DevicePolicyManager policyManager;
-    private final WaveUpWorldState waveUpWorldState;
-    private final WakeUpSettings settings;
-    private final Context context;
-    private long lastTimeScreenOnOrOff;
-    private Thread turnOffScreenThread;
-    private boolean turningOffScreen;
+    private static volatile WakeUpScreenHandler INSTANCE;
+
+    private final PowerManager.WakeLock mWakeLock;
+    private final DevicePolicyManager mPolicyManager;
+    private final WaveUpWorldState mWaveUpWorldState;
+    private final WakeUpSettings mSettings;
+    private final Context mContext;
+    private long mLastTimeScreenOnOrOff;
+    private Thread mTurnOffScreenThread;
+    private boolean mIsTurningOffScreen;
 
     private WakeUpScreenHandler(Context context) {
-        this.context = context;
-        this.powerManager = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
-        this.wakeLock = powerManager.newWakeLock(PowerManager.ACQUIRE_CAUSES_WAKEUP | PowerManager.SCREEN_BRIGHT_WAKE_LOCK, "WakeUpWakeLock");
-        this.policyManager = (DevicePolicyManager) context.getSystemService(Context.DEVICE_POLICY_SERVICE);
-        this.settings = WakeUpSettings.getInstance(context);
-        this.waveUpWorldState = new WaveUpWorldState(context);
+        this.mContext = context.getApplicationContext();
+
+        PowerManager powerManager = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
+        this.mWakeLock = powerManager.newWakeLock(PowerManager.ACQUIRE_CAUSES_WAKEUP
+                | PowerManager.SCREEN_BRIGHT_WAKE_LOCK, "WakeUpWakeLock");
+
+        this.mPolicyManager = (DevicePolicyManager) context.getSystemService(Context.DEVICE_POLICY_SERVICE);
+        this.mSettings = WakeUpSettings.getInstance(context);
+        this.mWaveUpWorldState = new WaveUpWorldState(context);
     }
 
     public static WakeUpScreenHandler getInstance(Context context) {
-        if (instance == null) {
+        if (INSTANCE == null) {
             synchronized (WakeUpScreenHandler.class) {
-                if (instance == null) {
-                    instance = new WakeUpScreenHandler(context);
+                if (INSTANCE == null) {
+                    INSTANCE = new WakeUpScreenHandler(context);
                 }
             }
         }
 
-        return instance;
+        return INSTANCE;
     }
 
     private Thread turnOffScreenThread(final long delay) {
         return new Thread() {
             @Override
             public void run() {
-                if (waveUpWorldState.isScreenOn()) {
+                if (mWaveUpWorldState.isScreenOn()) {
                     Log.d(TAG, "Creating a thread to turn off display if still covered in " + delay / 1000 + " seconds");
                     try {
                         Thread.sleep(delay);
@@ -81,63 +84,63 @@ public class WakeUpScreenHandler {
     }
 
     private void doTurnOffScreen() {
-        turningOffScreen = true; // Issue #68. Avoid interrupting the thread if screen is already being turned off.
-        lastTimeScreenOnOrOff = System.currentTimeMillis();
-        if (settings.isVibrateWhileLocking()) {
+        mIsTurningOffScreen = true; // Issue #68. Avoid interrupting the thread if screen is already being turned off.
+        mLastTimeScreenOnOrOff = System.currentTimeMillis();
+        if (mSettings.isVibrateWhileLocking()) {
             vibrate();
         }
         Log.i(TAG, "Switched from 'far' to 'near'.");
-        if (settings.isLockScreenWithPowerButton()) {
+        if (mSettings.isLockScreenWithPowerButton()) {
             Log.i(TAG, "Turning screen off simulating power button press.");
             Root.pressPowerButton();
         } else {
             Log.i(TAG, "Turning screen off.");
             try {
-                policyManager.lockNow();
+                mPolicyManager.lockNow();
             } catch (IllegalStateException e) {
                 Log.e(TAG, "Failed to run lockNow() to turn off the screen. Probably due to an ongoing call. Exception: " + e);
             } catch (SecurityException e) {
                 Log.e(TAG, "Failed to run lockNow() to turn off the screen. Probably due to missing device admin rights, which I don't really understand... Exception: " + e);
             }
         }
-        turningOffScreen = false;
+        mIsTurningOffScreen = false;
     }
 
     public void turnOffScreen() {
-        if (waveUpWorldState.isScreenOn()) {
-            if (settings.isVibrateWhileLocking()) {
+        if (mWaveUpWorldState.isScreenOn()) {
+            if (mSettings.isVibrateWhileLocking()) {
                 vibrate();
             }
-            turnOffScreenThread = turnOffScreenThread(settings.getSensorCoverTimeBeforeLockingScreen());
-            turnOffScreenThread.start();
+            mTurnOffScreenThread = turnOffScreenThread(mSettings.getSensorCoverTimeBeforeLockingScreen());
+            mTurnOffScreenThread.start();
         }
     }
 
     public void cancelTurnOff() {
-        if (turnOffScreenThread != null && !turningOffScreen) {
+        if (mTurnOffScreenThread != null && !mIsTurningOffScreen) {
             Log.d(TAG, "Cancelling turning off of display");
-            turnOffScreenThread.interrupt();
-            turnOffScreenThread = null;
+            mTurnOffScreenThread.interrupt();
+            mTurnOffScreenThread = null;
         }
     }
 
     public long getLastTimeScreenOnOrOff() {
-        return lastTimeScreenOnOrOff;
+        return mLastTimeScreenOnOrOff;
     }
 
     public void turnOnScreen() {
-        if (!waveUpWorldState.isScreenOn()) {
-            lastTimeScreenOnOrOff = System.currentTimeMillis();
+        if (!mWaveUpWorldState.isScreenOn()) {
+            mLastTimeScreenOnOrOff = System.currentTimeMillis();
             Log.i(TAG, "Switched from 'near' to 'far'. Turning screen on");
-            if (wakeLock.isHeld()) {
-                wakeLock.release();
+            if (mWakeLock.isHeld()) {
+                mWakeLock.release();
             }
-            wakeLock.acquire(TIME_SCREEN_ON);
+            mWakeLock.acquire(TIME_SCREEN_ON);
         }
     }
 
     private void vibrate() {
-        Vibrator vibrator = (Vibrator) this.context.getSystemService(Context.VIBRATOR_SERVICE);
+        Vibrator vibrator = (Vibrator) this.mContext.getSystemService(Context.VIBRATOR_SERVICE);
         vibrator.vibrate(50);
     }
 }

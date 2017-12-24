@@ -22,33 +22,37 @@ package com.duy.wakeup.manager;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Build;
+import android.os.Bundle;
 import android.os.PowerManager;
 
 import com.duy.wakeup.receivers.CallStateReceiver;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 public class WaveUpWorldState {
     private static final String TAG = "WaveUpWorldState";
-    private final Context context;
+    private final Context mContext;
 
     public WaveUpWorldState(Context context) {
-        this.context = context;
+        this.mContext = context;
     }
 
     public boolean isScreenOn() {
-        boolean screenOn;
-        PowerManager powerManager = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
-
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH) { // isScreenOn method is deprecated from API Level 20
-            screenOn = powerManager.isInteractive();
+        boolean screenOn = false;
+        PowerManager powerManager = (PowerManager) mContext.getSystemService(Context.POWER_SERVICE);
+        if (powerManager != null) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH) { // isScreenOn method is deprecated from API Level 20
+                screenOn = powerManager.isInteractive();
+            } else {
+                screenOn = powerManager.isScreenOn();
+            }
         } else {
-            screenOn = powerManager.isScreenOn();
+            FirebaseAnalytics.getInstance(mContext).logEvent("PowerManager_not_found", new Bundle());
         }
-
         return screenOn;
     }
 
     public boolean isPortrait() {
-        int orientation = context.getResources().getConfiguration().orientation;
+        int orientation = mContext.getResources().getConfiguration().orientation;
         return orientation == Configuration.ORIENTATION_PORTRAIT || orientation == Configuration.ORIENTATION_UNDEFINED;
     }
 

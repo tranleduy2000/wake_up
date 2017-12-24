@@ -141,7 +141,7 @@ public class MainActivity extends AppCompatPreferenceActivity implements SharedP
 
         ListView listView = getListView();
         listView.addFooterView(uninstallButton);
-        onSharedPreferenceChanged(getSettings().getPreferences(), WakeUpSettings.SENSOR_COVER_TIME_BEFORE_LOCKING_SCREEN); // Work-around to set the summary of the option every time the Main Activity is shown
+        onSharedPreferenceChanged(getSettings().getPreferences(), WakeUpSettings.KEY_SENSOR_COVER_TIME_BEFORE_LOCKING_SCREEN); // Work-around to set the summary of the option every time the Main Activity is shown
     }
 
     @Override
@@ -189,17 +189,17 @@ public class MainActivity extends AppCompatPreferenceActivity implements SharedP
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         ProximitySensorManager.getInstance(getApplicationContext()).startOrStopListeningDependingOnConditions();
         switch (key) {
-            case WakeUpSettings.ENABLED:
+            case WakeUpSettings.KEY_ENABLED:
                 if (getSettings().isServiceEnabled()) {
                     requestReadPhoneStatePermission();
                 }
                 startService();
-            case WakeUpSettings.LOCK_SCREEN:
+            case WakeUpSettings.KEY_LOCK_SCREEN:
                 if (getSettings().isLockScreen() && !getSettings().isLockScreenAdmin()) {
                     openRequestAdminRightsYesNoDialog();
                 }
                 break;
-            case WakeUpSettings.LOCK_SCREEN_WITH_POWER_BUTTON:
+            case WakeUpSettings.KEY_LOCK_SCREEN_WITH_POWER_BUTTON:
                 if (getSettings().isLockScreenWithPowerButton()) {
                     if (!Root.requestSuPermission()) {
                         getSettings().setLockScreenWithPowerButton(false);
@@ -207,12 +207,12 @@ public class MainActivity extends AppCompatPreferenceActivity implements SharedP
                     }
                 }
                 break;
-            case WakeUpSettings.SENSOR_COVER_TIME_BEFORE_LOCKING_SCREEN:
+            case WakeUpSettings.KEY_SENSOR_COVER_TIME_BEFORE_LOCKING_SCREEN:
                 Preference preference = findPreference(key);
                 ListPreference listPreference = (ListPreference) preference;
                 preference.setSummary(String.format(getResources().getString(com.duy.wakeup.R.string.pref_sensor_cover_time_before_locking_screen_summary), listPreference.getEntry()));
                 break;
-            case WakeUpSettings.NUMBER_OF_WAVES:
+            case WakeUpSettings.KEY_NUMBER_OF_WAVES:
                 Preference numberOfWavesPreference = findPreference(key);
                 ListPreference numberOfWavesListPreference = (ListPreference) numberOfWavesPreference;
                 numberOfWavesPreference.setSummary(String.format(getResources().getString(com.duy.wakeup.R.string.pref_number_of_waves_summary), numberOfWavesListPreference.getEntry()));

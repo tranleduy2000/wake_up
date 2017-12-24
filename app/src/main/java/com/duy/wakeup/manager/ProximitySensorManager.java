@@ -34,23 +34,24 @@ public class ProximitySensorManager implements SensorEventListener {
     private static final long POCKET_THRESHOLD = 5000;
     private static final long MIN_TIME_BETWEEN_SCREEN_ON_AND_OFF = 1500;
     private static volatile ProximitySensorManager instance;
-    private final SensorManager sensorManager;
-    private final Sensor proximitySensor;
-    private final Context context;
-    private final WakeUpScreenHandler screenHandler;
-    private final WakeUpSettings settings;
-    int waveCount = 0;
-    long lastWaveTime = 0;
-    private Distance lastDistance = Distance.FAR;
-    private long lastTime = 0;
-    private boolean listening = false;
+
+    private final SensorManager mSensorManager;
+    private final Sensor mProximitySensor;
+    private final Context mContext;
+    private final WakeUpScreenHandler mScreenHandler;
+    private final WakeUpSettings mSettings;
+    private int mWaveCount = 0;
+    private long mLastWaveTime = 0;
+    private Distance mLastDistance = Distance.FAR;
+    private long mLastTime = 0;
+    private boolean mIsListening = false;
 
     private ProximitySensorManager(Context context) {
-        this.context = context;
-        this.screenHandler = WakeUpScreenHandler.getInstance(context);
-        this.sensorManager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
-        this.proximitySensor = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
-        this.settings = WakeUpSettings.getInstance(context);
+        this.mContext = context.getApplicationContext();
+        this.mScreenHandler = WakeUpScreenHandler.getInstance(context);
+        this.mSensorManager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
+        this.mProximitySensor = mSensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
+        this.mSettings = WakeUpSettings.getInstance(context);
         start();
     }
 
@@ -67,21 +68,21 @@ public class ProximitySensorManager implements SensorEventListener {
     }
 
     private void start() {
-        if (!listening) {
+        if (!mIsListening) {
             Log.d(TAG, "Registering proximity sensor listener.");
-            sensorManager.registerListener(this, proximitySensor, SensorManager.SENSOR_DELAY_NORMAL);
-            listening = true;
+            mSensorManager.registerListener(this, mProximitySensor, SensorManager.SENSOR_DELAY_NORMAL);
+            mIsListening = true;
         } else {
             Log.d(TAG, "Proximity sensor listener is already registered. There is no need to register it again.");
         }
     }
 
     public final void startOrStopListeningDependingOnConditions() {
-        WaveUpWorldState waveUpWorldState = new WaveUpWorldState(context);
+        WaveUpWorldState waveUpWorldState = new WaveUpWorldState(mContext);
         boolean startAllowedByWaveOrLockModes =
-                (!waveUpWorldState.isScreenOn() && (settings.isPocketMode() || settings.isWaveMode())) ||
-                        (waveUpWorldState.isScreenOn() && settings.isLockScreen() && settings.isLockScreenAdmin());
-        boolean startAllowedByOrientation = settings.isLockScreenWhenLandscape() || waveUpWorldState.isPortrait()
+                (!waveUpWorldState.isScreenOn() && (mSettings.isPocketMode() || mSettings.isWaveMode())) ||
+                        (waveUpWorldState.isScreenOn() && mSettings.isLockScreen() && mSettings.isLockScreenAdmin());
+        boolean startAllowedByOrientation = mSettings.isLockScreenWhenLandscape() || waveUpWorldState.isPortrait()
                 || !waveUpWorldState.isScreenOn();
         boolean startAllowedByNoOngoingCall = !waveUpWorldState.isOngoingCall();
 
@@ -105,11 +106,11 @@ public class ProximitySensorManager implements SensorEventListener {
     }
 
     public final void stop() {
-        WakeUpScreenHandler.getInstance(context).cancelTurnOff();
-        if (listening) {
+        WakeUpScreenHandler.getInstance(mContext).cancelTurnOff();
+        if (mIsListening) {
             Log.d(TAG, "Unregistering proximity sensor listener");
-            sensorManager.unregisterListener(this);
-            listening = false;
+            mSensorManager.unregisterListener(this);
+            mIsListening = false;
         } else {
             Log.d(TAG, "Proximity sensor listener is already unregistered. There is no need to unregister it again.");
         }
@@ -123,13 +124,13 @@ public class ProximitySensorManager implements SensorEventListener {
 
         // If the sensor gets uncovered, there is possibly a thread waiting to turn off the screen. It needs to be interrupted.
         if (currentDistance == Distance.FAR) {
-            screenHandler.cancelTurnOff();
+            mScreenHandler.cancelTurnOff();
         }
 
-        boolean uncovered = lastDistance == Distance.NEAR && currentDistance == Distance.FAR;
-        boolean covered = lastDistance == Distance.FAR && currentDistance == Distance.NEAR;
+        boolean uncovered = mLastDistance == Distance.NEAR && currentDistance == Distance.FAR;
+        boolean covered = mLastDistance == Distance.FAR && currentDistance == Distance.NEAR;
 
-        long timeBetweenFarAndNear = currentTime - lastTime;
+        long timeBetweenFarAndNear = currentTime - mLastTime;
         if (uncovered) {
             Log.v(TAG, "Just uncovered. Time it was covered: " + timeBetweenFarAndNear);
         } else {
@@ -141,34 +142,34 @@ public class ProximitySensorManager implements SensorEventListener {
         boolean tookOutOfPocket = timeBetweenFarAndNear > POCKET_THRESHOLD;
 
         if (uncovered) {
-            long timeSinceLastScreenOnOrOff = currentTime - screenHandler.getLastTimeScreenOnOrOff();
+            long timeSinceLastScreenOnOrOff = currentTime - mScreenHandler.getLastTimeScreenOnOrOff();
             if (timeSinceLastScreenOnOrOff > MIN_TIME_BETWEEN_SCREEN_ON_AND_OFF) { // Don't do anything if it turned on or off 1.5 seconds ago
-                if (waved && settings.isWaveMode()) {
-                    if (currentTime - lastWaveTime > WAVE_THRESHOLD) {
-                        waveCount = 0; // Reset wave count the last wave was a long time ago (in this case 2 seconds) - Will only switch on screen if waves happen within 2 seconds
+                if (waved && mSettings.isWaveMode()) {
+                    if (currentTime - mLastWaveTime > WAVE_THRESHOLD) {
+                        mWaveCount = 0; // Reset wave count the last wave was a long time ago (in this case 2 seconds) - Will only switch on screen if waves happen within 2 seconds
                     }
 
-                    waveCount++;
-                    Log.v(TAG, "Waved. waveCount: " + waveCount + "");
-                    Log.v(TAG, "Time between waves was: " + (currentTime - lastWaveTime) + " (will only switch on screen if waves happen within 2 seconds)");
-                    lastWaveTime = System.currentTimeMillis();
-                    long minWaves = settings.getNumberOfWavesToWaveUp() - 1;
-                    if (waveCount > minWaves) {
-                        screenHandler.turnOnScreen();
-                        waveCount = 0;
+                    mWaveCount++;
+                    Log.v(TAG, "Waved. waveCount: " + mWaveCount + "");
+                    Log.v(TAG, "Time between waves was: " + (currentTime - mLastWaveTime) + " (will only switch on screen if waves happen within 2 seconds)");
+                    mLastWaveTime = System.currentTimeMillis();
+                    long minWaves = mSettings.getNumberOfWavesToWaveUp() - 1;
+                    if (mWaveCount > minWaves) {
+                        mScreenHandler.turnOnScreen();
+                        mWaveCount = 0;
                     }
-                } else if (tookOutOfPocket && settings.isPocketMode()) {
-                    screenHandler.turnOnScreen();
+                } else if (tookOutOfPocket && mSettings.isPocketMode()) {
+                    mScreenHandler.turnOnScreen();
                 }
             } else {
                 Log.d(TAG, "Time since last screen off: " + timeSinceLastScreenOnOrOff + ". Not switching it on");
             }
         } else if (covered) {
-            screenHandler.turnOffScreen();
+            mScreenHandler.turnOffScreen();
         }
 
-        lastDistance = currentDistance;
-        lastTime = currentTime;
+        mLastDistance = currentDistance;
+        mLastTime = currentTime;
     }
 
     @Override

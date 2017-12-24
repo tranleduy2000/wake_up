@@ -11,14 +11,15 @@ android {
         versionCode 1
         versionName "1.0.0"
     }
+
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
-        releaseGoogle { // Just used for the different privacy policy texts
+        debug {
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            versionNameSuffix '-google'
         }
     }
     lintOptions {
@@ -35,5 +36,5 @@ dependencies {
     }
     compile 'com.google.firebase:firebase-core:11.8.0'
 }
-// Add to the bottom of the file
+
 apply plugin: 'com.google.gms.google-services'

@@ -26,107 +26,107 @@ import android.content.SharedPreferences;
 import android.preference.CheckBoxPreference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 
 import com.duy.wakeup.receivers.LockScreenAdminReceiver;
 
 
 public class WakeUpSettings {
-    public static final String ENABLED = "pref_enable";
-    public static final String INITIAL_DIALOG_SHOWN = "pref_initial_dialog_shown";
-    public static final String WAVE_MODE = "pref_wave_mode";
-    public static final String POCKET_MODE = "pref_pocket_mode";
-    public static final String LOCK_SCREEN = "pref_lock_screen";
-    public static final String LOCK_SCREEN_WHEN_LANDSCAPE = "pref_lock_screen_when_landscape";
-    public static final String LOCK_SCREEN_WITH_POWER_BUTTON = "pref_lock_screen_with_power_button_as_root";
-    public static final String SENSOR_COVER_TIME_BEFORE_LOCKING_SCREEN = "pref_sensor_cover_time_before_locking_screen"; // In milliseconds
-    public static final String VIBRATE_ON_LOCK = "pref_lock_screen_vibrate_on_lock";
-    public static final String NUMBER_OF_WAVES = "pref_number_of_waves";
-    public static final String ADAPTED_TO_NEW_MULTIPLE_WAVE_OPTION = "pref_adapted_to_new_multiple_wave_option";
+    public static final String KEY_ENABLED = "pref_enable";
+    public static final String KEY_INITIAL_DIALOG_SHOWN = "pref_initial_dialog_shown";
+    public static final String KEY_WAVE_MODE = "pref_wave_mode";
+    public static final String KEY_POCKET_MODE = "pref_pocket_mode";
+    public static final String KEY_LOCK_SCREEN = "pref_lock_screen";
+    public static final String KEY_LOCK_SCREEN_WHEN_LANDSCAPE = "pref_lock_screen_when_landscape";
+    public static final String KEY_LOCK_SCREEN_WITH_POWER_BUTTON = "pref_lock_screen_with_power_button_as_root";
+    public static final String KEY_SENSOR_COVER_TIME_BEFORE_LOCKING_SCREEN = "pref_sensor_cover_time_before_locking_screen"; // In milliseconds
+    public static final String KEY_VIBRATE_ON_LOCK = "pref_lock_screen_vibrate_on_lock";
+    public static final String KEY_NUMBER_OF_WAVES = "pref_number_of_waves";
+    public static final String KEY_ADAPTED_TO_NEW_MULTIPLE_WAVE_OPTION = "pref_adapted_to_new_multiple_wave_option";
+    public static final String KEY_SHOW_STARTED_SERVICE_TOAST = "pref_show_start_service_toast";
 
-    public static final String SHOW_STARTED_SERVICE_TOAST = "pref_show_start_service_toast";
+    private static volatile WakeUpSettings INSTANCE;
+    private final Context mContext;
+    private PreferenceActivity mPreferenceActivity = null;
 
-    private static volatile WakeUpSettings instance;
-    private final Context context;
-    private PreferenceActivity preferenceActivity = null;
-
-    private WakeUpSettings(Context context) {
-        this.context = context;
+    private WakeUpSettings(@NonNull Context context) {
+        this.mContext = context.getApplicationContext();
     }
 
     public static WakeUpSettings getInstance(Context context) {
-        if (instance == null) {
+        if (INSTANCE == null) {
             synchronized (WakeUpSettings.class) {
-                if (instance == null) {
-                    instance = new WakeUpSettings(context);
+                if (INSTANCE == null) {
+                    INSTANCE = new WakeUpSettings(context);
                 }
             }
         }
 
-        return instance;
+        return INSTANCE;
     }
 
     public SharedPreferences getPreferences() {
-        return PreferenceManager.getDefaultSharedPreferences(context);
+        return PreferenceManager.getDefaultSharedPreferences(mContext);
     }
 
     public boolean isServiceEnabled() {
-        return getPreferences().getBoolean(ENABLED, false);
+        return getPreferences().getBoolean(KEY_ENABLED, false);
     }
 
     public boolean isWaveMode() {
-        return getPreferences().getBoolean(WAVE_MODE, false);
+        return getPreferences().getBoolean(KEY_WAVE_MODE, false);
     }
 
     public boolean isPocketMode() {
-        return getPreferences().getBoolean(POCKET_MODE, false);
+        return getPreferences().getBoolean(KEY_POCKET_MODE, false);
     }
 
     public boolean isLockScreen() {
-        return getPreferences().getBoolean(LOCK_SCREEN, false);
+        return getPreferences().getBoolean(KEY_LOCK_SCREEN, false);
     }
 
     public void setLockScreen(boolean lockScreen) {
-        setPreference(LOCK_SCREEN, lockScreen);
+        setPreference(KEY_LOCK_SCREEN, lockScreen);
     }
 
     public boolean isLockScreenWhenLandscape() {
-        return getPreferences().getBoolean(LOCK_SCREEN_WHEN_LANDSCAPE, false);
+        return getPreferences().getBoolean(KEY_LOCK_SCREEN_WHEN_LANDSCAPE, false);
     }
 
     public boolean isLockScreenWithPowerButton() {
-        return getPreferences().getBoolean(LOCK_SCREEN_WITH_POWER_BUTTON, false);
+        return getPreferences().getBoolean(KEY_LOCK_SCREEN_WITH_POWER_BUTTON, false);
     }
 
     public void setLockScreenWithPowerButton(boolean lockScreenWithPowerButton) {
-        setPreference(LOCK_SCREEN_WITH_POWER_BUTTON, lockScreenWithPowerButton);
+        setPreference(KEY_LOCK_SCREEN_WITH_POWER_BUTTON, lockScreenWithPowerButton);
     }
 
     public boolean isVibrateWhileLocking() {
-        return getPreferences().getBoolean(VIBRATE_ON_LOCK, false);
+        return getPreferences().getBoolean(KEY_VIBRATE_ON_LOCK, false);
     }
 
     public long getSensorCoverTimeBeforeLockingScreen() {
-        return Long.parseLong(getPreferences().getString(SENSOR_COVER_TIME_BEFORE_LOCKING_SCREEN, "1000"));
+        return Long.parseLong(getPreferences().getString(KEY_SENSOR_COVER_TIME_BEFORE_LOCKING_SCREEN, "1000"));
     }
 
     public long getNumberOfWavesToWaveUp() {
-        return Long.parseLong(getPreferences().getString(NUMBER_OF_WAVES, "2"));
+        return Long.parseLong(getPreferences().getString(KEY_NUMBER_OF_WAVES, "2"));
     }
 
     public void setNumberOfWaves(long numberOfWaves) {
-        setPreference(NUMBER_OF_WAVES, Long.toString(numberOfWaves));
+        setPreference(KEY_NUMBER_OF_WAVES, Long.toString(numberOfWaves));
     }
 
     private void setPreference(String key, boolean value) {
-        if (preferenceActivity != null) { // This changes the GUI, but it needs the MainActivity to have started
-            CheckBoxPreference checkBox = (CheckBoxPreference) preferenceActivity.findPreference(key);
+        if (mPreferenceActivity != null) { // This changes the GUI, but it needs the MainActivity to have started
+            CheckBoxPreference checkBox = (CheckBoxPreference) mPreferenceActivity.findPreference(key);
             checkBox.setChecked(value);
         } else { // This doesn't change the GUI
             getPreferences().edit().putBoolean(key, value).apply();
         }
         /* onSharedPreferenceChanged is not called sometimes when status of a preference is changed manually.
          * Call startOrStop here to check if proximity sensor listener should be registered or not. */
-        ProximitySensorManager.getInstance(context).startOrStopListeningDependingOnConditions();
+        ProximitySensorManager.getInstance(mContext).startOrStopListeningDependingOnConditions();
     }
 
     private void setPreference(String key, long value) {
@@ -138,36 +138,36 @@ public class WakeUpSettings {
     }
 
     public boolean isLockScreenAdmin() {
-        ComponentName adminReceiver = new ComponentName(context, LockScreenAdminReceiver.class);
+        ComponentName adminReceiver = new ComponentName(mContext, LockScreenAdminReceiver.class);
         return getPolicyManager().isAdminActive(adminReceiver);
     }
 
     public boolean isInitialDialogShown() {
-        return getPreferences().getBoolean(INITIAL_DIALOG_SHOWN, false);
+        return getPreferences().getBoolean(KEY_INITIAL_DIALOG_SHOWN, false);
     }
 
     public void setInitialDialogShown(boolean initialDialogShown) {
-        getPreferences().edit().putBoolean(INITIAL_DIALOG_SHOWN, initialDialogShown).apply();
+        getPreferences().edit().putBoolean(KEY_INITIAL_DIALOG_SHOWN, initialDialogShown).apply();
     }
 
     public boolean isShowStartedServiceToast() {
-        return getPreferences().getBoolean(SHOW_STARTED_SERVICE_TOAST, true);
+        return getPreferences().getBoolean(KEY_SHOW_STARTED_SERVICE_TOAST, true);
     }
 
     public void setShowStartedServiceToast(boolean showStartedServiceToast) {
-        getPreferences().edit().putBoolean(SHOW_STARTED_SERVICE_TOAST, showStartedServiceToast).apply();
+        getPreferences().edit().putBoolean(KEY_SHOW_STARTED_SERVICE_TOAST, showStartedServiceToast).apply();
     }
 
     public boolean isAdaptedToNewMultipleWaveOption() {
-        return getPreferences().getBoolean(ADAPTED_TO_NEW_MULTIPLE_WAVE_OPTION, false);
+        return getPreferences().getBoolean(KEY_ADAPTED_TO_NEW_MULTIPLE_WAVE_OPTION, false);
     }
 
     public void setAdaptedToNewMultipleWaveOption(boolean adaptedToNewMultipleWaveOption) {
-        getPreferences().edit().putBoolean(ADAPTED_TO_NEW_MULTIPLE_WAVE_OPTION, adaptedToNewMultipleWaveOption).apply();
+        getPreferences().edit().putBoolean(KEY_ADAPTED_TO_NEW_MULTIPLE_WAVE_OPTION, adaptedToNewMultipleWaveOption).apply();
     }
 
     private DevicePolicyManager getPolicyManager() {
-        return (DevicePolicyManager) context.getSystemService(Context.DEVICE_POLICY_SERVICE);
+        return (DevicePolicyManager) mContext.getSystemService(Context.DEVICE_POLICY_SERVICE);
     }
 
     public void setPreferenceActivity(PreferenceActivity preferenceActivity) {
@@ -177,6 +177,6 @@ public class WakeUpSettings {
          * we need to have the preferenceActivity, which is the MainActivity so we set it the moment
          * it is launched so that we can use it afterwards.
          */
-        this.preferenceActivity = preferenceActivity;
+        this.mPreferenceActivity = preferenceActivity;
     }
 }
