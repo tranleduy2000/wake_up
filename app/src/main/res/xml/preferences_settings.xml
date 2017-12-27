@@ -8,15 +8,18 @@
             android:key="pref_enable"
             android:title="@string/pref_enable" />
     </PreferenceCategory>
+
     <PreferenceCategory
         android:dependency="pref_enable"
         android:key="prefs_general"
         android:title="@string/prefs_modes">
+
         <CheckBoxPreference
             android:defaultValue="true"
             android:key="pref_wave_mode"
             android:summary="@string/pref_wave_mode_summary"
             android:title="@string/pref_wave_mode" />
+
         <ListPreference
             android:defaultValue="2"
             android:dependency="pref_wave_mode"
@@ -25,13 +28,21 @@
             android:key="pref_number_of_waves"
             android:summary="@string/pref_number_of_waves_summary"
             android:title="@string/pref_number_of_waves" />
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="@string/key_pref_key_vibrate_wave"
+            android:summary="Vibration when waving through the proximity sensor"
+            android:title="Wave vibrate" />
+
         <CheckBoxPreference
             android:defaultValue="true"
             android:key="pref_pocket_mode"
             android:summary="@string/pref_pocket_mode_summary"
             android:title="@string/pref_pocket_mode" />
     </PreferenceCategory>
-    <!--<PreferenceCategory
+
+    <PreferenceCategory
         android:dependency="pref_enable"
         android:key="prefs_general"
         android:title="@string/pref_lock_screen">
@@ -66,5 +77,13 @@
             android:key="pref_lock_screen_with_power_button_as_root"
             android:summary="@string/pref_lock_screen_with_power_button_as_root_summary"
             android:title="@string/pref_lock_screen_with_power_button_as_root" />
-    </PreferenceCategory>-->
+    </PreferenceCategory>
+    <Preference
+        android:key="@string/key_pref_translate"
+        android:summary="@string/pref_summary_translate"
+        android:title="Translate" />
+    <Preference
+        android:key="@string/key_pref_uninstall"
+        android:summary="If you want to uninstall this app, click here."
+        android:title="Uninstall" />
 </PreferenceScreen>

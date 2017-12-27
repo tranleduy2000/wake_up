@@ -1,2 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="key_pref_key_vibrate_wave" translatable="false">key_pref_key_vibrate_wave</string>
+    <string name="key_pref_uninstall" translatable="false">key_pref_uninstall</string>
+    <string name="key_pref_translate" translatable="false">key_pref_translate</string>
+</resources>

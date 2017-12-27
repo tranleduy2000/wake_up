@@ -10,11 +10,9 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.graphics.Palette;
 import android.support.v7.widget.Toolbar;
 import android.text.method.LinkMovementMethod;
 import android.view.Menu;
@@ -68,36 +66,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         collapsingToolbarLayout.setContentScrimColor((primary));
         collapsingToolbarLayout.setStatusBarScrimColor((primary));
 
-//        ImageView header = findViewById(R.id.header);
-//        Bitmap bitmap = ((BitmapDrawable) header.getDrawable()).getBitmap();
-//        Palette.from(bitmap).generate(new Palette.PaletteAsyncListener() {
-//            public void onGenerated(@NonNull Palette palette) {
-//                applyPalette(palette);
-//            }
-//        });
-
         showInitialDialog();
     }
 
-    private void applyPalette(Palette palette) {
-        int primaryDark = getResources().getColor(R.color.colorPrimaryDark);
-        int primary = getResources().getColor(R.color.colorPrimary);
-
-        collapsingToolbarLayout.setContentScrimColor(palette.getMutedColor(primary));
-        collapsingToolbarLayout.setStatusBarScrimColor(palette.getLightVibrantColor(primaryDark));
-
-        updateBackground((FloatingActionButton) findViewById(R.id.fab), palette);
-        supportStartPostponedEnterTransition();
-    }
-
-
-    private void updateBackground(FloatingActionButton fab, Palette palette) {
-//        int lightVibrantColor = palette.getLightVibrantColor(getResources().getColor(android.R.color.white));
-//        int vibrantColor = palette.getVibrantColor(getResources().getColor(R.color.colorAccent));
-//
-//        fab.setRippleColor(lightVibrantColor);
-//        fab.setBackgroundTintList(ColorStateList.valueOf(vibrantColor));
-    }
 
     private void showInitialDialog() {
         if (!getSettings().isInitialDialogShown()) {
