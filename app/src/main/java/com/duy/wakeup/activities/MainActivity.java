@@ -14,15 +14,12 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
-import android.text.method.LinkMovementMethod;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.duy.common.utils.DLog;
-import com.duy.wakeup.BuildConfig;
 import com.duy.wakeup.R;
 import com.duy.wakeup.manager.WakeUpSettings;
 import com.duy.wakeup.receivers.LockScreenAdminReceiver;
@@ -135,37 +132,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         int id = item.getItemId();
 
         switch (id) {
-            case R.id.privacy_policy_menu_item:
-                showPrivacyPolicyDialog();
-                break;
             case R.id.revoke_device_admin_menu_item:
                 removeDeviceAdminPermission();
                 break;
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    private void showPrivacyPolicyDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(R.string.privacy_policy_dialog_title);
-
-        if (BuildConfig.BUILD_TYPE.equals("releaseGoogle")) {
-            builder.setMessage(R.string.privacy_policy_google_play_store_dialog_text);
-        } else {
-            builder.setMessage(R.string.privacy_policy_f_droid_dialog_text);
-        }
-
-        builder.setPositiveButton(android.R.string.ok, null);
-
-        AlertDialog dialog = builder.show();
-
-        // Work-around to make links clickable (don't ask me why this works):
-        // See: https://stackoverflow.com/questions/1997328/how-can-i-get-clickable-hyperlinks-in-alertdialog-from-a-string-resource
-        TextView txtMsg = dialog.findViewById(android.R.id.message);
-        if (txtMsg != null) {
-            txtMsg.setMovementMethod(LinkMovementMethod.getInstance());
-        }
     }
 
     private void removeDeviceAdminPermission() {

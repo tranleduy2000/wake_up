@@ -44,17 +44,17 @@
 
     <PreferenceCategory
         android:dependency="pref_enable"
-        android:key="prefs_general"
+        android:key="@string/key_prefs_general"
         android:title="@string/pref_lock_screen">
         <CheckBoxPreference
             android:defaultValue="false"
-            android:key="pref_lock_screen"
+            android:key="@string/key_pref_lock_screen"
             android:summary="@string/pref_lock_screen_mode_summary"
             android:title="@string/pref_lock_screen" />
         <CheckBoxPreference
             android:defaultValue="false"
             android:dependency="pref_lock_screen"
-            android:key="pref_lock_screen_when_landscape"
+            android:key="@string/key_pref_lock_screen_when_landscape"
             android:summary="@string/pref_lock_screen_when_landscape_summary"
             android:title="@string/pref_lock_screen_when_landscape" />
         <ListPreference
